@@ -19,27 +19,35 @@ public class ItemQueries {
     private static PreparedStatement updateItem;
     private static PreparedStatement deleteItem;
     private static ResultSet resultSet;
-
+    
     // Add a new item to the database
     public static void addItem(ItemEntry item) {
+        
+        if(getItemByBarcode(item.getBarcode()) != null){
+            item.setQuantity(item.getQuantity()+1);
+            updateItem(item);
+            return;
+        }
+        
         connection = DBConnection.getConnection();
         
         try {
             addItem = connection.prepareStatement(
-                "INSERT INTO app.items (barcode, name, description, brands, quantity, imageUrl) VALUES (?, ?, ?, ?, ?, ?)"
+                "INSERT INTO app.items (barcode, name, brands, quantity, IMGURL) VALUES (?, ?, ?, ?, ?)"
             );
+            
+            //addItem.setString(1, String.valueOf(id++));
             addItem.setString(1, item.getBarcode());
             addItem.setString(2, item.getName());
-            addItem.setString(3, item.getDescription());
-            addItem.setString(4, item.getBrands());
-            addItem.setInt(5, item.getQuantity());
-            addItem.setString(6, item.getImageUrl());
+            addItem.setString(3, item.getBrands());
+            addItem.setInt(4, item.getQuantity());
+            addItem.setString(5, item.getImageUrl());
             addItem.executeUpdate();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
     }
-
+    
     // Retrieve all items from the database
     public static ArrayList<ItemEntry> getAllItems() {
         connection = DBConnection.getConnection();
@@ -52,10 +60,9 @@ public class ItemQueries {
                 ItemEntry item = new ItemEntry(
                     resultSet.getString("barcode"),
                     resultSet.getString("name"),
-                    resultSet.getString("description"),
                     resultSet.getString("brands"),
                     resultSet.getInt("quantity"),
-                    resultSet.getString("imageUrl")
+                    resultSet.getString("imageurl")
                 );
                 items.add(item);
             }
@@ -77,10 +84,9 @@ public class ItemQueries {
                 return new ItemEntry(
                     resultSet.getString("barcode"),
                     resultSet.getString("name"),
-                    resultSet.getString("description"),
                     resultSet.getString("brands"),
                     resultSet.getInt("quantity"),
-                    resultSet.getString("imageUrl")
+                    resultSet.getString("IMGURL")
                 );
             }
         } catch (SQLException sqlException) {
@@ -94,14 +100,11 @@ public class ItemQueries {
         connection = DBConnection.getConnection();
         try {
             updateItem = connection.prepareStatement(
-                "UPDATE app.items SET name = ?, description = ?, brands = ?, quantity = ?, imageUrl = ? WHERE barcode = ?"
+                "UPDATE app.items SET quantity = ? WHERE barcode = ?"
             );
-            updateItem.setString(1, item.getName());
-            updateItem.setString(2, item.getDescription());
-            updateItem.setString(3, item.getBrands());
-            updateItem.setInt(4, item.getQuantity());
-            updateItem.setString(5, item.getImageUrl());
-            updateItem.setString(6, item.getBarcode());
+
+            updateItem.setInt(1, item.getQuantity());
+            updateItem.setString(2, item.getBarcode());
             updateItem.executeUpdate();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();

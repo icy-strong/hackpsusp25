@@ -25,7 +25,7 @@ public class DBConnection {
             try {
                 // Optionally load the Derby embedded driver explicitly
                 Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-                connection = DriverManager.getConnection(database);
+                connection = DriverManager.getConnection(database, user, password);
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("Could not open database.");

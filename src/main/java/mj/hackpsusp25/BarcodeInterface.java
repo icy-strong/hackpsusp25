@@ -47,7 +47,7 @@ public class BarcodeInterface {
                 throw new IOException("Product not found for barcode: " + barcode);
             }
            
-            ItemEntry item = new ItemEntry(barcode, productResponse.getProduct().getProductName(),productResponse.getProduct().getIngredients(),  productResponse.getProduct().getBrands());
+            ItemEntry item = new ItemEntry(barcode, productResponse.getProduct().getProductName(),  productResponse.getProduct().getBrands());
             if(product.has("image_url")){
                 item.setImageUrl(product.get("image_url").getAsString());
             }
