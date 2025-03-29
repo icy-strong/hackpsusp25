@@ -23,6 +23,8 @@ public class Hackpsusp25 {
         try {
             ItemEntry it = BarcodeInterface.getProduct(barcode);
             System.out.println("Name: " + it.getName());
+            ItemQueries.addItem(it);
+            
         } catch (IOException e) {
             System.err.println("Error retrieving product: " + e.getMessage());
         }
