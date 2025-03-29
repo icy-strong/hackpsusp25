@@ -11,19 +11,30 @@ public class ItemEntry {
     private String barcode;            // Barcode for scanning
     private String name;               // Item name
     private String description;        // Item description
+    private String brands;
     private ArrayList<Integer> categoryIds; // List of category IDs (for multi-category support)
     private int quantity;              // Inventory count
     private String imageUrl;           // Image URL or path
     
     
     
-    public ItemEntry(String barcode, String name, String description, 
-                     int supplierId, int quantity, double price, String imageUrl) {
+    public ItemEntry(String barcode, String name, String description, String brands,
+                     int quantity, String imageUrl) {
         this.barcode = barcode;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.imageUrl = imageUrl;
+        this.brands = brands;
+        this.categoryIds = new ArrayList<>();
+    }
+    
+    public ItemEntry(String barcode, String name, String description, String brands) {
+        this.barcode = barcode;
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity = 1;
+        this.brands = brands;
         this.categoryIds = new ArrayList<>();
     }
     
@@ -47,6 +58,7 @@ public class ItemEntry {
     public ArrayList<Integer> getCategoryIds() { return categoryIds; }
     public int getQuantity() { return quantity; }
     public String getImageUrl() { return imageUrl; }
+    public String getBrands(){ return brands;}
 
     // Setters
     public void setItemId(int itemId) { this.itemId = itemId; }
@@ -56,6 +68,7 @@ public class ItemEntry {
     public void setCategoryIds(ArrayList<Integer> categoryIds) { this.categoryIds = categoryIds; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setBrands(String brands) { this.brands = brands; }
 
 }
 
