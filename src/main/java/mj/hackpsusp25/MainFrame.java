@@ -1,6 +1,9 @@
 package mj.hackpsusp25;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import com.formdev.flatlaf.FlatLightLaf; // Import FlatLaf
 
 public class MainFrame extends javax.swing.JFrame {
@@ -20,6 +23,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         initComponents(); // Initialize UI components
     }
+    
+    static class ImageRenderer extends DefaultTableCellRenderer {
+    @Override
+    public void setValue(Object value) {
+        if (value instanceof ImageIcon) {
+            setIcon((ImageIcon) value);
+            setText(""); // Remove text if any
+        } else {
+            setText(value.toString());
+            setIcon(null);
+        }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +51,13 @@ public class MainFrame extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        But_Org = new javax.swing.JToggleButton();
+        But_Inventory = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        But_Add = new javax.swing.JToggleButton();
+        But_Sub = new javax.swing.JToggleButton();
 
         jLabel1.setText("jLabel1");
 
@@ -53,14 +75,85 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 1180, 90));
 
-        jToggleButton1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jToggleButton1.setText("Inventory");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(But_Org);
+        But_Org.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Org.setText("Org");
+        But_Org.setBorderPainted(false);
+        But_Org.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                But_OrgActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        jPanel1.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 60));
+
+        buttonGroup1.add(But_Inventory);
+        But_Inventory.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Inventory.setText("Inventory");
+        But_Inventory.setBorderPainted(false);
+        But_Inventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_InventoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(But_Inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 150, 60));
+
+        System.out.println("Table data loading...");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object[][] {
+                {new ImageIcon(getClass().getResource("C:\\Users\\myaze\\Documents\\NetBeansProjects\\hackpsusp25\\src\\main\\java\\mj\\hackpsusp25\\apple.png")), "Item 1", "Value 1", "Value 2"},
+                {new ImageIcon(getClass().getResource("C:\\Users\\myaze\\Documents\\NetBeansProjects\\hackpsusp25\\src\\main\\java\\mj\\hackpsusp25\\apple.png")), "Item 2", "Value 3", "Value 4"},
+                {null, "Item 3", "Value 5", "Value 6"},
+                {null, "Item 4", "Value 7", "Value 8"}
+            },
+            new String [] {
+                "Image", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            for (int j = 0; j < jTable1.getColumnCount(); j++) {
+                System.out.println("Row " + i + ", Col " + j + ": " + jTable1.getValueAt(i, j));
+            }
+        }
+        System.out.println("Finished loading table data.");
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 900, 340));
+
+        buttonGroup1.add(But_Add);
+        But_Add.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Add.setText("Add");
+        But_Add.setBorderPainted(false);
+        But_Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_AddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(But_Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 150, 60));
+
+        buttonGroup1.add(But_Sub);
+        But_Sub.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Sub.setText("Sub");
+        But_Sub.setBorderPainted(false);
+        But_Sub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_SubActionPerformed(evt);
+            }
+        });
+        jPanel1.add(But_Sub, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 150, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,23 +161,37 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void But_OrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_OrgActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_But_OrgActionPerformed
+
+    private void But_InventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_InventoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_InventoryActionPerformed
+
+    private void But_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_AddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_AddActionPerformed
+
+    private void But_SubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_SubActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_SubActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -118,11 +225,17 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton But_Add;
+    private javax.swing.JToggleButton But_Inventory;
+    private javax.swing.JToggleButton But_Org;
+    private javax.swing.JToggleButton But_Sub;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
