@@ -4,6 +4,9 @@
 
 package mj.hackpsusp25;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  *
  * @author icy
@@ -11,7 +14,21 @@ package mj.hackpsusp25;
 public class Hackpsusp25 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Scanner scanner = new Scanner(System.in);
+        
+        while(true){
+        String barcode = scanner.nextLine();
+
+        
+        try {
+            ItemEntry it = BarcodeInterface.getProduct(barcode);
+            System.out.println("Name: " + it.getName());
+            ItemQueries.addItem(it);
+            
+        } catch (IOException e) {
+            System.err.println("Error retrieving product: " + e.getMessage());
+        }
+    }
     }
 }
 
