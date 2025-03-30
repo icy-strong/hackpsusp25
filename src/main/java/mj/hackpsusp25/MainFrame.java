@@ -48,6 +48,8 @@ public class MainFrame extends javax.swing.JFrame {
         shoppingEditTable.setRowHeight(rowHeight);
         shoppingGenTable.setRowHeight(rowHeight);
         
+        rebuildFilterBoxes();
+        
     }
     
     static class ImageRenderer extends DefaultTableCellRenderer {
@@ -73,7 +75,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void rebuildFilterBoxes(){
         ArrayList<String> filters = CategoryQueries.getAllCategories();
+        filters.add(0, "None");
         invFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
+        orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
     }
 
     /**
@@ -401,6 +405,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        Org_Filter_Item_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Org_Filter_Item_TableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(Org_Filter_Item_Table);
@@ -1199,7 +1208,40 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Org_Filter_Search_BoxActionPerformed
 
     private void But_Add_FilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_FilterActionPerformed
-        // TODO add your handling code here:
+       Object s = orgFilterAddFilterCmbo.getSelectedItem();
+        String filt = (String)s;
+        ArrayList<ItemEntry> results;
+        if(filt.equals("None")){
+            try{
+                String newFilter = Create_Filter_Text_Box.getText();
+                CategoryQueries.addCategory(newFilter);
+                 int row = Org_Filter_Item_Table.getSelectedRow();
+                 if(row>-1){
+                     DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
+                     ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
+                     
+                     ItemQueries.addItemToCategory(itm.getBarcode(), CategoryQueries.getCategoryId(newFilter));
+                     Object rowData[] = {newFilter};
+                     DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Filters_Table.getModel();
+
+                     displayClassesTableModel.addRow(rowData);
+                 }
+                
+            }catch(Exception e){}
+        }else{
+            int row = Org_Filter_Item_Table.getSelectedRow();
+                 if(row>-1){
+                     DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
+                     ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
+                     
+                     ItemQueries.addItemToCategory(itm.getBarcode(), CategoryQueries.getCategoryId(filt));
+                     Object rowData[] = {filt};
+                     DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Filters_Table.getModel();
+
+                     displayClassesTableModel.addRow(rowData);
+                 }
+        
+        }
     }//GEN-LAST:event_But_Add_FilterActionPerformed
 
     private void But_Org_Filter_Remove_Filter_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
@@ -1212,9 +1254,37 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void Org_Filter_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Org_Filter_Search_BoxKeyPressed
         String search = Org_Filter_Search_Box.getText();
-        ArrayList<ItemEntry> results = ItemQueries.searchItemsByName(search);
+        Object s = orgFilterFilterCmbo.getSelectedItem();
+        String filt = (String)s;
+        ArrayList<ItemEntry> results;
+        if(filt.equals("None")){
+            results = ItemQueries.searchItemsByName(search);
+        }else{
+            results = ItemQueries.searchItems(search, filt);
+        }
         popOrgItemTable(results);
     }//GEN-LAST:event_Org_Filter_Search_BoxKeyPressed
+
+    private void Org_Filter_Item_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Org_Filter_Item_TableMouseClicked
+       int row = Org_Filter_Item_Table.getSelectedRow();
+       DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Filters_Table.getModel();
+       displayClassesTableModel.setRowCount(0);
+       
+       if(row>-1){
+            DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
+            ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
+
+            ArrayList<Integer> str = ItemQueries.getCategoriesForItem(itm.getBarcode());
+            int j = 0;
+            for (Integer i: str){
+                String cat = CategoryQueries.getCategoryName(i);
+                Object rowData[] = {cat};
+                displayClassesTableModel.addRow(rowData);
+                //displayClassesTableModel.setValueAt(cat, j, 0);
+                j++;
+            }
+       }
+    }//GEN-LAST:event_Org_Filter_Item_TableMouseClicked
 
     /**
      * @param args the command line arguments

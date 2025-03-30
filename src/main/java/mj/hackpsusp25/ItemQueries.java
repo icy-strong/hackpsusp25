@@ -95,6 +95,28 @@ public class ItemQueries {
         }
         return null;
     }
+    
+    public static ItemEntry getItemByName(String name) {
+        connection = DBConnection.getConnection();
+        try {
+            getItemByBarcode = connection.prepareStatement("SELECT * FROM app.items WHERE name = ?");
+            getItemByBarcode.setString(1, name);
+            resultSet = getItemByBarcode.executeQuery();
+
+            if (resultSet.next()) {
+                return new ItemEntry(
+                    resultSet.getString("barcode"),
+                    resultSet.getString("name"),
+                    resultSet.getString("brands"),
+                    resultSet.getInt("quantity"),
+                    resultSet.getString("IMGURL")
+                );
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
 
     // Update item details
     public static void updateItem(ItemEntry item) {
@@ -128,7 +150,7 @@ public class ItemQueries {
         connection = DBConnection.getConnection();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "INSERT INTO item_categories (item_id, category_id) VALUES (?, ?) ON CONFLICT DO NOTHING"
+                "INSERT INTO item_categories (barcode, category_id) VALUES (?, ?) ON CONFLICT DO NOTHING"
             );
             stmt.setString(1, barcode);
             stmt.setInt(2, categoryId);
@@ -184,7 +206,7 @@ public class ItemQueries {
         ArrayList<Integer> categoryIds = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT category_id FROM item_categories WHERE item_id = ?"
+                "SELECT category_id FROM item_categories WHERE barcode = ?"
             );
             stmt.setString(1, barcode);
             resultSet = stmt.executeQuery();
