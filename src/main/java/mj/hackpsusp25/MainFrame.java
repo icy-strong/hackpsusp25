@@ -124,6 +124,7 @@ public class MainFrame extends javax.swing.JFrame {
         invFilterCmbo = new javax.swing.JComboBox<>();
         invScroll = new javax.swing.JScrollPane();
         invTable = new javax.swing.JTable();
+        But_Inv_Export = new javax.swing.JButton();
         Add_Pannel = new javax.swing.JPanel();
         Add_Barcode_Lable = new javax.swing.JLabel();
         addBarcodeBox = new javax.swing.JTextField();
@@ -348,22 +349,34 @@ public class MainFrame extends javax.swing.JFrame {
         });
         invScroll.setViewportView(invTable);
 
+        But_Inv_Export.setBackground(new java.awt.Color(204, 255, 204));
+        But_Inv_Export.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        But_Inv_Export.setText("Export");
+        But_Inv_Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Inv_ExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout Inventory_PannelLayout = new javax.swing.GroupLayout(Inventory_Pannel);
         Inventory_Pannel.setLayout(Inventory_PannelLayout);
         Inventory_PannelLayout.setHorizontalGroup(
             Inventory_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Inventory_PannelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Inv_Search_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Inv_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(Inv_Filter_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(Inventory_PannelLayout.createSequentialGroup()
-                .addComponent(invScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(Inventory_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(Inventory_PannelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Inv_Search_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Inv_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
+                        .addComponent(Inv_Filter_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(But_Inv_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addComponent(invScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         Inventory_PannelLayout.setVerticalGroup(
@@ -374,9 +387,10 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(Inv_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Inv_Search_Lable)
                     .addComponent(Inv_Filter_Lable)
-                    .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(But_Inv_Export))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(invScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+                .addComponent(invScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Inventory_Pannel, "card2");
@@ -1543,6 +1557,23 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
         popShopGenTable();
     }//GEN-LAST:event_Shopping_GeneratedFilterCmbo1ActionPerformed
 
+    private void But_Inv_ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Inv_ExportActionPerformed
+        List<List<Object>> toWrite = new ArrayList<>();
+        DefaultTableModel model = (DefaultTableModel) invTable.getModel();
+        for(int i = 0; i<invTable.getRowCount(); i++){
+           List<Object> line = new ArrayList<>();
+           ItemEntry itm = ItemQueries.getItemByName((String)model.getValueAt(i, 1));
+           line.add(itm.getName());
+           line.add(itm.getBrands());
+           line.add(itm.getQuantity());
+           toWrite.add(line);
+       }
+        
+        try{
+        writeToSheet(getSheetsService(), "1be1eaIzrXCHs7HBkhr41Gq1yv5I7v-mJ8lXLVPIaL08" , "Inventory!A2", toWrite);
+        }catch(Exception e){}
+    }//GEN-LAST:event_But_Inv_ExportActionPerformed
+
     private void popShopEditTable(){
     DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingEditTable.getModel();
     displayClassesTableModel.setRowCount(0);
@@ -1747,6 +1778,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     private javax.swing.JToggleButton But_Add;
     private javax.swing.JButton But_Add_Filter;
     private javax.swing.JButton But_Add_Items;
+    private javax.swing.JButton But_Inv_Export;
     private javax.swing.JToggleButton But_Inventory;
     private javax.swing.JToggleButton But_Org;
     private javax.swing.JToggleButton But_Org_Customize_Toggle;
