@@ -249,6 +249,7 @@
                 <Component class="javax.swing.JTextField" name="Inv_Search_Box">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Inv_Search_BoxActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Inv_Search_BoxKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="Inv_Filter_Lable">

@@ -152,6 +152,33 @@ public class ItemQueries {
         }
     }
     
+    public static ArrayList<ItemEntry> searchItemsByName(String partialName) {
+    connection = DBConnection.getConnection();
+    ArrayList<ItemEntry> items = new ArrayList<>();
+    try {
+        // Use the LIKE operator with % to match any part of the name
+        PreparedStatement searchItems = connection.prepareStatement(
+            "SELECT * FROM app.items WHERE name LIKE ? ORDER BY name"
+        );
+        searchItems.setString(1, "%" + partialName + "%"); // % allows partial matches before/after the input
+
+        resultSet = searchItems.executeQuery();
+        
+        while (resultSet.next()) {
+            items.add(new ItemEntry(
+                resultSet.getString("barcode"),
+                resultSet.getString("name"),
+                resultSet.getString("brands"),
+                resultSet.getInt("quantity"),
+                resultSet.getString("IMGURL")
+            ));
+        }
+    } catch (SQLException sqlException) {
+        sqlException.printStackTrace();
+    }
+    return items;
+}
+    
     public static ArrayList<Integer> getCategoriesForItem(String barcode) {
         connection = DBConnection.getConnection();
         ArrayList<Integer> categoryIds = new ArrayList<>();
