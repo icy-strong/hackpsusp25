@@ -54,10 +54,11 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         Main_Pannel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        But_Org = new javax.swing.JToggleButton();
+        But_Shopping_List = new javax.swing.JToggleButton();
         But_Inventory = new javax.swing.JToggleButton();
         But_Add = new javax.swing.JToggleButton();
         But_Sub = new javax.swing.JToggleButton();
+        But_Org = new javax.swing.JToggleButton();
         Base_Pannel = new javax.swing.JPanel();
         Inventory_Pannel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,7 +82,6 @@ public class MainFrame extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
-        But_Org1 = new javax.swing.JToggleButton();
 
         jLabel1.setText("jLabel1");
 
@@ -108,16 +108,16 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         Main_Pannel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 1180, 90));
 
-        buttonGroup1.add(But_Org);
-        But_Org.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        But_Org.setText("Shopping List");
-        But_Org.setBorderPainted(false);
-        But_Org.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(But_Shopping_List);
+        But_Shopping_List.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Shopping_List.setText("Shopping List");
+        But_Shopping_List.setBorderPainted(false);
+        But_Shopping_List.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                But_OrgActionPerformed(evt);
+                But_Shopping_ListActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 170, 60));
+        Main_Pannel.add(But_Shopping_List, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 170, 60));
 
         buttonGroup1.add(But_Inventory);
         But_Inventory.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -151,6 +151,17 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         Main_Pannel.add(But_Sub, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 150, 60));
+
+        buttonGroup1.add(But_Org);
+        But_Org.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Org.setText("Org");
+        But_Org.setBorderPainted(false);
+        But_Org.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_OrgActionPerformed(evt);
+            }
+        });
+        Main_Pannel.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 60));
 
         Base_Pannel.setLayout(new java.awt.CardLayout());
 
@@ -372,17 +383,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         Main_Pannel.add(Base_Pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 2110, 2330));
 
-        buttonGroup1.add(But_Org1);
-        But_Org1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        But_Org1.setText("Org");
-        But_Org1.setBorderPainted(false);
-        But_Org1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                But_Org1ActionPerformed(evt);
-            }
-        });
-        Main_Pannel.add(But_Org1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 60));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -399,17 +399,19 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void But_OrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_OrgActionPerformed
+    private void But_Shopping_ListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_ListActionPerformed
         Add_Pannel.setVisible(false);
         Sub_Pannel.setVisible(false);
-        Org_Pannel.setVisible(true);
+        Org_Pannel.setVisible(false);
+        Shopping_List_Pannel.setVisible(true);
         Inventory_Pannel.setVisible(false);
-    }//GEN-LAST:event_But_OrgActionPerformed
+    }//GEN-LAST:event_But_Shopping_ListActionPerformed
 
     private void But_InventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_InventoryActionPerformed
         Add_Pannel.setVisible(false);
         Sub_Pannel.setVisible(false);
         Org_Pannel.setVisible(false);
+        Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(true);
         
     }//GEN-LAST:event_But_InventoryActionPerformed
@@ -418,6 +420,7 @@ public class MainFrame extends javax.swing.JFrame {
         Add_Pannel.setVisible(true);
         Sub_Pannel.setVisible(false);
         Org_Pannel.setVisible(false);
+        Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(false);
     }//GEN-LAST:event_But_AddActionPerformed
 
@@ -425,6 +428,7 @@ public class MainFrame extends javax.swing.JFrame {
         Add_Pannel.setVisible(false);
         Sub_Pannel.setVisible(true);
         Org_Pannel.setVisible(false);
+        Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(false);
     }//GEN-LAST:event_But_SubActionPerformed
 
@@ -440,9 +444,13 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void But_Org1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_But_Org1ActionPerformed
+    private void But_OrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_OrgActionPerformed
+        Add_Pannel.setVisible(false);
+        Sub_Pannel.setVisible(false);
+        Org_Pannel.setVisible(true);
+        Shopping_List_Pannel.setVisible(false);
+        Inventory_Pannel.setVisible(false);
+    }//GEN-LAST:event_But_OrgActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
@@ -491,7 +499,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton But_Add;
     private javax.swing.JToggleButton But_Inventory;
     private javax.swing.JToggleButton But_Org;
-    private javax.swing.JToggleButton But_Org1;
+    private javax.swing.JToggleButton But_Shopping_List;
     private javax.swing.JToggleButton But_Sub;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
