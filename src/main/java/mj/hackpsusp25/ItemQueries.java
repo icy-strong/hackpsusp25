@@ -146,28 +146,28 @@ public class ItemQueries {
         }
     }
     
-    public static void addItemToCategory(String barcode, int categoryId) {
+    public static void addItemToCategory(String barcode, String categoryName) {
         connection = DBConnection.getConnection();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "INSERT INTO app.itemcategories (barcode, category_id) VALUES (?, ?) ON CONFLICT DO NOTHING"
+                "INSERT INTO app.itemcategories (barcode, cat_name) VALUES (?, ?)"
             );
             stmt.setString(1, barcode);
-            stmt.setInt(2, categoryId);
+            stmt.setString(2, categoryName);
             stmt.executeUpdate();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
     }
     
-    public static void removeItemFromCategory(String barcode, int categoryId) {
+    public static void removeItemFromCategory(String barcode, String categoryName) {
         connection = DBConnection.getConnection();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "DELETE FROM app.itemcategories WHERE item_id = ? AND category_id = ?"
+                "DELETE FROM app.itemcategories WHERE barcode = ? AND cat_name = ?"
             );
             stmt.setString(1, barcode);
-            stmt.setInt(2, categoryId);
+            stmt.setString(2, categoryName);
             stmt.executeUpdate();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -201,26 +201,28 @@ public class ItemQueries {
     return items;
 }
     
-    public static ArrayList<Integer> getCategoriesForItem(String barcode) {
+    public static ArrayList<String> getCategoriesForItem(String barcode) {
         connection = DBConnection.getConnection();
-        ArrayList<Integer> categoryIds = new ArrayList<>();
+        ArrayList<String> categories = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT category_id FROM app.itemcategories WHERE barcode = ?"
+                "SELECT cat_name FROM app.itemcategories WHERE barcode = ?"
             );
             stmt.setString(1, barcode);
             resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                categoryIds.add(resultSet.getInt("category_id"));
+                categories.add(resultSet.getString("cat_name"));
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-        return categoryIds;
+        return categories;
     }
 
     public static ArrayList<ItemEntry> searchItems(String namePattern, String category) {
-        String query = "SELECT * FROM app.items WHERE name LIKE ? AND category = ?";
+        String query = "SELECT * FROM app.items WHERE name LIKE ?";
+        
+        
 
         connection = DBConnection.getConnection(); 
         ArrayList<ItemEntry> items = new ArrayList<>();
@@ -240,36 +242,33 @@ public class ItemQueries {
                                  resultSet.getString("name"),
                                  resultSet.getString("brands"), resultSet.getInt("quantity"), 
                                  resultSet.getString("IMGURL"));
-            items.add(item);
+            
+            if(ItemQueries.getCategoriesForItem(item.getBarcode()).contains(category)){
+                items.add(item);
+            }
         }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
+        
+        
 
         return items;
     }
 
 
-    public static ArrayList<ItemEntry> getItemsByCategory(int categoryId) {
+    public static ArrayList<ItemEntry> getItemsByCategory(String category) {
         connection = DBConnection.getConnection();
         ArrayList<ItemEntry> items = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT i.* FROM app.items i " +
-                "JOIN itemcategories ic ON i.id = ic.item_id " +
-                "WHERE ic.category_id = ?"
+                "SELECT * FROM app.itemcategories WHERE cat_name = ?"
             );
-            stmt.setInt(1, categoryId);
+            stmt.setString(1, category);
             resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
-                ItemEntry item = new ItemEntry(
-                    resultSet.getString("barcode"),
-                    resultSet.getString("name"),
-                    resultSet.getString("brands"),
-                    resultSet.getInt("quantity"),
-                    resultSet.getString("image_url")
-                );
+                ItemEntry item = ItemQueries.getItemByBarcode(resultSet.getString("barcode"));
                 items.add(item);
             }
         } catch (SQLException sqlException) {

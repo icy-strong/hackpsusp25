@@ -22,25 +22,16 @@ public class CategoryQueries {
     private static PreparedStatement getCategoryId;
     private static PreparedStatement getAllCategories;
     private static ResultSet resultSet;
-    private static int id = 0;
 
     // Add a new category if it doesn't already exist
     public static void addCategory(String categoryName) {
         connection = DBConnection.getConnection();
         
-        // Check if category exists first
-        if (getCategoryId(categoryName) != -1) {
-            System.out.println("Category already exists: " + categoryName);
-            return;
-        }
-
         try {
             addCategory = connection.prepareStatement(
-                "INSERT INTO app.categories (category_id), (name) VALUES (?)"
+                "INSERT INTO app.categories (name) VALUES (?)"
             );
-            addCategory.setInt(1, id);
-            id++;
-            addCategory.setString(2, categoryName);
+            addCategory.setString(1, categoryName);
             addCategory.executeUpdate();
             System.out.println("Category added: " + categoryName);
         } catch (SQLException sqlException) {
@@ -48,48 +39,6 @@ public class CategoryQueries {
         }
     }
 
-    // Get category ID by name (returns -1 if not found)
-    public static int getCategoryId(String categoryName) {
-        connection = DBConnection.getConnection();
-        int categoryId = -1;
-
-        try {
-            getCategoryId = connection.prepareStatement(
-                "SELECT id FROM app.categories WHERE name = ?"
-            );
-            getCategoryId.setString(1, categoryName);
-            resultSet = getCategoryId.executeQuery();
-
-            if (resultSet.next()) {
-                categoryId = resultSet.getInt("id");
-            }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-
-        return categoryId;
-    }
-    
-    public static String getCategoryName(Integer categoryID) {
-        connection = DBConnection.getConnection();
-        String categoryName = null;
-
-        try {
-            getCategoryId = connection.prepareStatement(
-                "SELECT id FROM app.categories WHERE id = ?"
-            );
-            getCategoryId.setInt(1, categoryID);
-            resultSet = getCategoryId.executeQuery();
-
-            if (resultSet.next()) {
-                categoryName = resultSet.getString("name");
-            }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        }
-
-        return categoryName;
-    }
     
     public static Integer getCategoryIdByName(String categoryName) {
         connection = DBConnection.getConnection();
@@ -97,13 +46,13 @@ public class CategoryQueries {
 
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT id FROM app.categories WHERE name = ?"
+                "SELECT category_id FROM app.categories WHERE name = ?"
             );
             stmt.setString(1, categoryName);
             resultSet = stmt.executeQuery();
 
             if (resultSet.next()) {
-                categoryId = resultSet.getInt("id");
+                categoryId = resultSet.getInt("category_id");
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
