@@ -23,8 +23,9 @@ public class ItemQueries {
     // Add a new item to the database
     public static void addItem(ItemEntry item) {
         
-        if(getItemByBarcode(item.getBarcode()) != null){
-            item.setQuantity(item.getQuantity()+1);
+        ItemEntry checkItem = getItemByBarcode(item.getBarcode());
+        if(checkItem != null){
+            item.setQuantity(item.getQuantity()+checkItem.getQuantity());
             updateItem(item);
             return;
         }
