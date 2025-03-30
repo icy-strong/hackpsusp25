@@ -35,11 +35,14 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Pannel.setBackground(Background_Color);
                 
         DefaultTableModel displayClassesTableModel = (DefaultTableModel) addTable.getModel();
-
+        DefaultTableModel subModel = (DefaultTableModel) addTable.getModel();
         displayClassesTableModel.setRowCount(0);
+        subModel.setRowCount(0);
 
         addTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
         invTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
+        subTable.setRowHeight(120);
+        
     }
     
     static class ImageRenderer extends DefaultTableCellRenderer {
