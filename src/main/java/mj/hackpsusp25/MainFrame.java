@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import com.formdev.flatlaf.FlatLightLaf; // Import FlatLaf
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -23,18 +24,27 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         initComponents(); // Initialize UI components
+        addTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
     }
     
     static class ImageRenderer extends DefaultTableCellRenderer {
-    @Override
-    public void setValue(Object value) {
-        if (value instanceof ImageIcon) {
-            setIcon((ImageIcon) value);
-            setText(""); // Remove text if any
-        } else {
-            setText(value.toString());
-            setIcon(null);
-        }
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Check if the value is an ImageIcon and set it to the cell
+            if (value instanceof ImageIcon) {
+                ImageIcon imageIcon = (ImageIcon) value;
+            Image image = imageIcon.getImage(); // Get the image from the icon
+            Image resizedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Resize the image
+            setIcon(new ImageIcon(resizedImage)); // Set the resized image as the icon
+                setText("");                 // Optionally clear the text in the cell
+            } else {
+                setIcon(null);  // If not an image, clear the icon
+                setText("No Image"); // Optionally show a fallback text if no image
+            }
+
+            return this;
         }
     }
     
@@ -89,13 +99,17 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Generate_Pannel = new javax.swing.JPanel();
         Shopping_Generated_Table = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        Shopping_Generated_Search_Lable = new javax.swing.JLabel();
+        Shopping_Generated_Search_Box = new javax.swing.JTextField();
+        Shopping_Generated_Filter_Lable1 = new javax.swing.JLabel();
+        Shopping_GeneratedFilterCmbo1 = new javax.swing.JComboBox<>();
         Shopping_List_Edit_Pannel = new javax.swing.JPanel();
         Shopping_Edit_Table = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        Shopping_Edit_Search_Label = new javax.swing.JLabel();
+        Shopping_Edit_Search_Box = new javax.swing.JTextField();
+        Shopping_Edit_Filter_Label = new javax.swing.JLabel();
+        Shopping_Edit_FilterCmbo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -449,16 +463,46 @@ public class MainFrame extends javax.swing.JFrame {
         });
         Shopping_Generated_Table.setViewportView(jTable5);
 
+        Shopping_Generated_Search_Lable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Shopping_Generated_Search_Lable.setText("Search: ");
+
+        Shopping_Generated_Search_Box.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Shopping_Generated_Search_BoxActionPerformed(evt);
+            }
+        });
+
+        Shopping_Generated_Filter_Lable1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Shopping_Generated_Filter_Lable1.setText("Filters: ");
+
+        Shopping_GeneratedFilterCmbo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout Shopping_List_Generate_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Generate_Pannel);
         Shopping_List_Generate_Pannel.setLayout(Shopping_List_Generate_PannelLayout);
         Shopping_List_Generate_PannelLayout.setHorizontalGroup(
             Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Shopping_Generated_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(Shopping_List_Generate_PannelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(Shopping_Generated_Search_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Shopping_Generated_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(Shopping_Generated_Filter_Lable1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Shopping_GeneratedFilterCmbo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Shopping_List_Generate_PannelLayout.setVerticalGroup(
             Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_Generate_PannelLayout.createSequentialGroup()
-                .addGap(0, 76, Short.MAX_VALUE)
+                .addGap(0, 28, Short.MAX_VALUE)
+                .addGroup(Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(Shopping_Generated_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Shopping_Generated_Search_Lable)
+                    .addComponent(Shopping_Generated_Filter_Lable1)
+                    .addComponent(Shopping_GeneratedFilterCmbo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(Shopping_Generated_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -495,19 +539,19 @@ public class MainFrame extends javax.swing.JFrame {
         });
         Shopping_Edit_Table.setViewportView(jTable4);
 
-        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel7.setText("Search: ");
+        Shopping_Edit_Search_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Shopping_Edit_Search_Label.setText("Search: ");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        Shopping_Edit_Search_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                Shopping_Edit_Search_BoxActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel8.setText("Filters: ");
+        Shopping_Edit_Filter_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Shopping_Edit_Filter_Label.setText("Filters: ");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Shopping_Edit_FilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout Shopping_List_Edit_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Edit_Pannel);
         Shopping_List_Edit_Pannel.setLayout(Shopping_List_Edit_PannelLayout);
@@ -516,13 +560,13 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(Shopping_List_Edit_PannelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Shopping_Edit_Search_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Shopping_Edit_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Shopping_Edit_Filter_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Shopping_Edit_FilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(508, Short.MAX_VALUE))
         );
         Shopping_List_Edit_PannelLayout.setVerticalGroup(
@@ -530,10 +574,10 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_Edit_PannelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(Shopping_List_Edit_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Shopping_Edit_Search_Label)
+                    .addComponent(Shopping_Edit_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Shopping_Edit_Filter_Label)
+                    .addComponent(Shopping_Edit_FilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
         );
@@ -645,12 +689,24 @@ public class MainFrame extends javax.swing.JFrame {
             displayClassesTableModel.setNumRows(0);
             for (ItemEntry i : newItems) {
                 Object[] rowData = new Object[4];
-                rowData[0] = null;
+                
+                 try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+                
+                //rowData[0] = null;
                 rowData[1] = i.getName();
                 rowData[2] = i.getQuantity();
                 rowData[3] = null;
                 displayClassesTableModel.addRow(rowData);
             }
+            addTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
             
             addBarcodeBox.setText("");
             
@@ -677,9 +733,9 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Generate_Pannel.setVisible(true);
     }//GEN-LAST:event_But_Shopping_List_GenerateActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void Shopping_Edit_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Edit_Search_BoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_Shopping_Edit_Search_BoxActionPerformed
 
     private void subBarcodeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBarcodeBoxActionPerformed
         // TODO add your handling code here:
@@ -688,6 +744,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void But_Add_ItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_ItemsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_But_Add_ItemsActionPerformed
+
+    private void Shopping_Generated_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Generated_Search_BoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Shopping_Generated_Search_BoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -747,7 +807,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
     private javax.swing.JPanel Org_Pannel;
+    private javax.swing.JComboBox<String> Shopping_Edit_FilterCmbo;
+    private javax.swing.JLabel Shopping_Edit_Filter_Label;
+    private javax.swing.JTextField Shopping_Edit_Search_Box;
+    private javax.swing.JLabel Shopping_Edit_Search_Label;
     private javax.swing.JScrollPane Shopping_Edit_Table;
+    private javax.swing.JComboBox<String> Shopping_GeneratedFilterCmbo1;
+    private javax.swing.JLabel Shopping_Generated_Filter_Lable1;
+    private javax.swing.JTextField Shopping_Generated_Search_Box;
+    private javax.swing.JLabel Shopping_Generated_Search_Lable;
     private javax.swing.JScrollPane Shopping_Generated_Table;
     private javax.swing.JPanel Shopping_List_Card_Pannel;
     private javax.swing.JPanel Shopping_List_Edit_Pannel;
@@ -761,14 +829,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> invFilterCmbo;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField subBarcodeBox;
     private javax.swing.JTable subTable;
     // End of variables declaration//GEN-END:variables
