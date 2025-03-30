@@ -521,13 +521,13 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Unpack_Pannel.setLayout(Org_Unpack_PannelLayout);
         Org_Unpack_PannelLayout.setHorizontalGroup(
             Org_Unpack_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Org_Unpack_PannelLayout.createSequentialGroup()
+            .addGroup(Org_Unpack_PannelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Org_Unpack_Master_Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Org_Unpack_Barcode_Input, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(Org_Unpack_Number_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(Org_Unpack_Number_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Org_Unpack_Number_Select, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -666,7 +666,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(Org_Filter_Filters_Table);
 
-        Org_Filter_Pannel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 190, 200));
+        Org_Filter_Pannel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 200, 200));
 
         Org_Filter_Label4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -676,13 +676,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         Org_Filter_Label5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label5.setText("Select Filter To Add:");
-        Org_Filter_Pannel.add(Org_Filter_Label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 152, -1));
+        Org_Filter_Pannel.add(Org_Filter_Label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 30, 160, -1));
 
         orgFilterAddFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Org_Filter_Pannel.add(orgFilterAddFilterCmbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, -1));
 
         But_Add_Filter.setBackground(new java.awt.Color(204, 255, 204));
-        But_Add_Filter.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        But_Add_Filter.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         But_Add_Filter.setText("Add Filter To Item");
         But_Add_Filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -693,11 +693,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         Org_Filter_Label6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label6.setText("Create New Filter:");
-        Org_Filter_Pannel.add(Org_Filter_Label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 152, -1));
+        Org_Filter_Pannel.add(Org_Filter_Label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 60, 160, -1));
         Org_Filter_Pannel.add(Create_Filter_Text_Box, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 150, -1));
 
         But_Org_Filter_Remove_Filter_Item.setBackground(new java.awt.Color(255, 204, 204));
-        But_Org_Filter_Remove_Filter_Item.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        But_Org_Filter_Remove_Filter_Item.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         But_Org_Filter_Remove_Filter_Item.setText("Remove Filter From Item");
         But_Org_Filter_Remove_Filter_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -725,9 +725,9 @@ public class MainFrame extends javax.swing.JFrame {
         orgFilterDeleteFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Org_Filter_Pannel.add(orgFilterDeleteFilterCmbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 130, 20));
 
-        Org_Filter_Label8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Filter_Label8.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         Org_Filter_Label8.setText("Select Filter To Delete:");
-        Org_Filter_Pannel.add(Org_Filter_Label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 170, -1));
+        Org_Filter_Pannel.add(Org_Filter_Label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 200, -1));
 
         Org_Card_Pannel.add(Org_Filter_Pannel, "card2");
 
@@ -1219,6 +1219,7 @@ public class MainFrame extends javax.swing.JFrame {
         Add_Pannel.setVisible(false);
         Sub_Pannel.setVisible(false);
         Org_Pannel.setVisible(true);
+        Please_Select_Panel.setVisible(false);
         Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(false);
         popOrgItemTable(ItemQueries.getAllItems());

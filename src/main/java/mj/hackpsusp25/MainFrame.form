@@ -602,13 +602,13 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="Org_Unpack_Master_Label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Org_Unpack_Barcode_Input" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="Org_Unpack_Number_Label" min="-2" pref="174" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="Org_Unpack_Number_Label" min="-2" pref="195" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Org_Unpack_Number_Select" min="-2" pref="91" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -900,7 +900,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="400" y="90" width="190" height="200"/>
+                              <AbsoluteConstraints x="390" y="90" width="200" height="200"/>
                             </Constraint>
                           </Constraints>
 
@@ -953,7 +953,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="400" y="30" width="152" height="-1"/>
+                              <AbsoluteConstraints x="392" y="30" width="160" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -983,7 +983,7 @@
                               <Color blue="cc" green="ff" red="cc" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="14" style="1"/>
+                              <Font name="SansSerif" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Add Filter To Item"/>
                           </Properties>
@@ -1005,7 +1005,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="400" y="60" width="152" height="-1"/>
+                              <AbsoluteConstraints x="392" y="60" width="160" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1022,7 +1022,7 @@
                               <Color blue="cc" green="cc" red="ff" type="rgb"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="12" style="1"/>
+                              <Font name="SansSerif" size="11" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Remove Filter From Item"/>
                           </Properties>
@@ -1092,13 +1092,13 @@
                         <Component class="javax.swing.JLabel" name="Org_Filter_Label8">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="SansSerif" size="14" style="1"/>
+                              <Font name="SansSerif" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Select Filter To Delete:"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="600" y="200" width="170" height="-1"/>
+                              <AbsoluteConstraints x="600" y="200" width="200" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
