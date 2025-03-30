@@ -42,6 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
         addTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
         invTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
         subTable.setRowHeight(120);
+        shoppingEditTable.setRowHeight(120);
+        shoppingGenTable.setRowHeight(120);
         
     }
     
@@ -779,7 +781,7 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Edit_Pannel.setVisible(true);
         Shopping_List_Generate_Pannel.setVisible(false);
         ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
-        DefaultTableModel displayClassesTableModel = (DefaultTableModel) Shopping_Edit_Table.getModel();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingEditTable.getModel();
         displayClassesTableModel.setRowCount(0);
         for(ItemEntry i: allItems){
             Object[] rowData = new Object[4];
@@ -800,7 +802,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             
         }
-        Shopping_Edit_Table.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+        shoppingEditTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
     }//GEN-LAST:event_But_Shopping_List_EditActionPerformed
 
     private void But_Shopping_List_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_GenerateActionPerformed
