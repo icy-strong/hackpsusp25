@@ -72,16 +72,28 @@ public class MainFrame extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        Org_Pannel = new javax.swing.JPanel();
+        Shopping_List_Pannel = new javax.swing.JPanel();
+        But_Shopping_List_Edit = new javax.swing.JToggleButton();
+        But_Shopping_List_Generate = new javax.swing.JToggleButton();
+        Shopping_List_Card_Pannel = new javax.swing.JPanel();
+        Shopping_List_Generate_Pannel = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        Shopping_List_Edit_Pannel = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         Sub_Pannel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        Org_Pannel = new javax.swing.JPanel();
-        Shopping_List_Pannel = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -98,6 +110,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         Main_Pannel.setBackground(new java.awt.Color(237, 235, 234));
         Main_Pannel.setForeground(new java.awt.Color(220, 220, 220));
+        Main_Pannel.setMinimumSize(new java.awt.Dimension(0, 0));
+        Main_Pannel.setPreferredSize(new java.awt.Dimension(1000, 800));
         Main_Pannel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -121,6 +135,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(But_Inventory);
         But_Inventory.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Inventory.setSelected(true);
         But_Inventory.setText("Inventory");
         But_Inventory.setBorderPainted(false);
         But_Inventory.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +204,22 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Image", "Name", "Quantity", "Filters"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout Inventory_PannelLayout = new javax.swing.GroupLayout(Inventory_Pannel);
@@ -246,8 +276,23 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Image", "Name", "Quantity", "Filters"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
+
+        jLabel9.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("ADD ITEMS");
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setOpaque(true);
 
         javax.swing.GroupLayout Add_PannelLayout = new javax.swing.GroupLayout(Add_Pannel);
         Add_Pannel.setLayout(Add_PannelLayout);
@@ -258,6 +303,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(Add_PannelLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,15 +314,200 @@ public class MainFrame extends javax.swing.JFrame {
             Add_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Add_PannelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Add_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1825, Short.MAX_VALUE))
+                .addGroup(Add_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1803, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Add_Pannel, "card3");
+
+        javax.swing.GroupLayout Org_PannelLayout = new javax.swing.GroupLayout(Org_Pannel);
+        Org_Pannel.setLayout(Org_PannelLayout);
+        Org_PannelLayout.setHorizontalGroup(
+            Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2110, Short.MAX_VALUE)
+        );
+        Org_PannelLayout.setVerticalGroup(
+            Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2330, Short.MAX_VALUE)
+        );
+
+        Base_Pannel.add(Org_Pannel, "card5");
+
+        buttonGroup2.add(But_Shopping_List_Edit);
+        But_Shopping_List_Edit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        But_Shopping_List_Edit.setText("Edit");
+        But_Shopping_List_Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Shopping_List_EditActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(But_Shopping_List_Generate);
+        But_Shopping_List_Generate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        But_Shopping_List_Generate.setSelected(true);
+        But_Shopping_List_Generate.setText("Generage");
+        But_Shopping_List_Generate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Shopping_List_GenerateActionPerformed(evt);
+            }
+        });
+
+        Shopping_List_Card_Pannel.setLayout(new java.awt.CardLayout());
+
+        Shopping_List_Generate_Pannel.setBackground(new java.awt.Color(204, 204, 204));
+        Shopping_List_Generate_Pannel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Image", "Name", "Filters", "Number Needed"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jTable5);
+
+        javax.swing.GroupLayout Shopping_List_Generate_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Generate_Pannel);
+        Shopping_List_Generate_Pannel.setLayout(Shopping_List_Generate_PannelLayout);
+        Shopping_List_Generate_PannelLayout.setHorizontalGroup(
+            Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+        );
+        Shopping_List_Generate_PannelLayout.setVerticalGroup(
+            Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_Generate_PannelLayout.createSequentialGroup()
+                .addGap(0, 76, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        Shopping_List_Card_Pannel.add(Shopping_List_Generate_Pannel, "card3");
+
+        Shopping_List_Edit_Pannel.setBackground(new java.awt.Color(204, 204, 204));
+        Shopping_List_Edit_Pannel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Image", "Name", "Filters", "Desired Stock"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTable4);
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setText("Search: ");
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setText("Filters: ");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout Shopping_List_Edit_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Edit_Pannel);
+        Shopping_List_Edit_Pannel.setLayout(Shopping_List_Edit_PannelLayout);
+        Shopping_List_Edit_PannelLayout.setHorizontalGroup(
+            Shopping_List_Edit_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(Shopping_List_Edit_PannelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(508, Short.MAX_VALUE))
+        );
+        Shopping_List_Edit_PannelLayout.setVerticalGroup(
+            Shopping_List_Edit_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_Edit_PannelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(Shopping_List_Edit_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
+        );
+
+        Shopping_List_Card_Pannel.add(Shopping_List_Edit_Pannel, "card2");
+
+        javax.swing.GroupLayout Shopping_List_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Pannel);
+        Shopping_List_Pannel.setLayout(Shopping_List_PannelLayout);
+        Shopping_List_PannelLayout.setHorizontalGroup(
+            Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Shopping_List_PannelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(But_Shopping_List_Generate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(But_Shopping_List_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(Shopping_List_PannelLayout.createSequentialGroup()
+                .addComponent(Shopping_List_Card_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1110, Short.MAX_VALUE))
+        );
+        Shopping_List_PannelLayout.setVerticalGroup(
+            Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_PannelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(But_Shopping_List_Generate)
+                    .addComponent(But_Shopping_List_Edit))
+                .addGap(55, 55, 55)
+                .addComponent(Shopping_List_Card_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1549, Short.MAX_VALUE))
+        );
+
+        Base_Pannel.add(Shopping_List_Pannel, "card6");
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setText("Barcode: ");
@@ -297,8 +529,23 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Image", "Name", "Quantity", "Filters"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
+
+        jLabel10.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("REMOVE ITEMS");
+        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setOpaque(true);
 
         javax.swing.GroupLayout Sub_PannelLayout = new javax.swing.GroupLayout(Sub_Pannel);
         Sub_Pannel.setLayout(Sub_PannelLayout);
@@ -309,6 +556,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(Sub_PannelLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,68 +567,16 @@ public class MainFrame extends javax.swing.JFrame {
             Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Sub_PannelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1825, Short.MAX_VALUE))
+                .addGroup(Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1803, Short.MAX_VALUE))
         );
 
-        Base_Pannel.add(Sub_Pannel, "card4");
-
-        javax.swing.GroupLayout Org_PannelLayout = new javax.swing.GroupLayout(Org_Pannel);
-        Org_Pannel.setLayout(Org_PannelLayout);
-        Org_PannelLayout.setHorizontalGroup(
-            Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2110, Short.MAX_VALUE)
-        );
-        Org_PannelLayout.setVerticalGroup(
-            Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2330, Short.MAX_VALUE)
-        );
-
-        Base_Pannel.add(Org_Pannel, "card5");
-
-        jToggleButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jToggleButton1.setText("Edit");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        jToggleButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jToggleButton2.setText("Generage");
-
-        jPanel2.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout Shopping_List_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Pannel);
-        Shopping_List_Pannel.setLayout(Shopping_List_PannelLayout);
-        Shopping_List_PannelLayout.setHorizontalGroup(
-            Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Shopping_List_PannelLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(Shopping_List_PannelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1763, Short.MAX_VALUE))
-        );
-        Shopping_List_PannelLayout.setVerticalGroup(
-            Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_PannelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2272, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        Base_Pannel.add(Shopping_List_Pannel, "card6");
+        Base_Pannel.add(Sub_Pannel, "card6");
 
         Main_Pannel.add(Base_Pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 2110, 2330));
 
@@ -388,12 +585,12 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Main_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Main_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Main_Pannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Main_Pannel, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
 
         pack();
@@ -440,10 +637,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void But_OrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_OrgActionPerformed
         Add_Pannel.setVisible(false);
         Sub_Pannel.setVisible(false);
@@ -452,9 +645,23 @@ public class MainFrame extends javax.swing.JFrame {
         Inventory_Pannel.setVisible(false);
     }//GEN-LAST:event_But_OrgActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void But_Shopping_List_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_EditActionPerformed
+        Shopping_List_Edit_Pannel.setVisible(true);
+        Shopping_List_Generate_Pannel.setVisible(false);
+    }//GEN-LAST:event_But_Shopping_List_EditActionPerformed
+
+    private void But_Shopping_List_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_GenerateActionPerformed
+        Shopping_List_Edit_Pannel.setVisible(false);
+        Shopping_List_Generate_Pannel.setVisible(true);
+    }//GEN-LAST:event_But_Shopping_List_GenerateActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -500,10 +707,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton But_Inventory;
     private javax.swing.JToggleButton But_Org;
     private javax.swing.JToggleButton But_Shopping_List;
+    private javax.swing.JToggleButton But_Shopping_List_Edit;
+    private javax.swing.JToggleButton But_Shopping_List_Generate;
     private javax.swing.JToggleButton But_Sub;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
     private javax.swing.JPanel Org_Pannel;
+    private javax.swing.JPanel Shopping_List_Card_Pannel;
+    private javax.swing.JPanel Shopping_List_Edit_Pannel;
+    private javax.swing.JPanel Shopping_List_Generate_Pannel;
     private javax.swing.JPanel Shopping_List_Pannel;
     private javax.swing.JPanel Sub_Pannel;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -511,24 +723,31 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
