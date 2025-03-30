@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Pannel.setBackground(Background_Color);
                 
         DefaultTableModel displayClassesTableModel = (DefaultTableModel) addTable.getModel();
-        DefaultTableModel subModel = (DefaultTableModel) addTable.getModel();
+        DefaultTableModel subModel = (DefaultTableModel) subTable.getModel();
         displayClassesTableModel.setRowCount(0);
         subModel.setRowCount(0);
 
