@@ -78,6 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
         filters.add(0, "None");
         invFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
         orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
+        orgFilterAddFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
     }
 
     /**
@@ -1243,7 +1244,9 @@ public class MainFrame extends javax.swing.JFrame {
             try{
                 String newFilter = Create_Filter_Text_Box.getText();
                 CategoryQueries.addCategory(newFilter);
+                rebuildFilterBoxes();
                  int row = Org_Filter_Item_Table.getSelectedRow();
+                 
                  if(row>-1){
                      DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
                      ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
