@@ -117,14 +117,14 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Card_Pannel = new javax.swing.JPanel();
         Shopping_List_Generate_Pannel = new javax.swing.JPanel();
         Shopping_Generated_Table = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        shoppingGenTable = new javax.swing.JTable();
         Shopping_Generated_Search_Lable = new javax.swing.JLabel();
         Shopping_Generated_Search_Box = new javax.swing.JTextField();
         Shopping_Generated_Filter_Lable1 = new javax.swing.JLabel();
         Shopping_GeneratedFilterCmbo1 = new javax.swing.JComboBox<>();
         Shopping_List_Edit_Pannel = new javax.swing.JPanel();
         Shopping_Edit_Table = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        shoppingEditTable = new javax.swing.JTable();
         Shopping_Edit_Search_Label = new javax.swing.JLabel();
         Shopping_Edit_Search_Box = new javax.swing.JTextField();
         Shopping_Edit_Filter_Label = new javax.swing.JLabel();
@@ -464,7 +464,7 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Generate_Pannel.setBackground(new java.awt.Color(204, 204, 204));
         Shopping_List_Generate_Pannel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        shoppingGenTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -490,7 +490,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Shopping_Generated_Table.setViewportView(jTable5);
+        Shopping_Generated_Table.setViewportView(shoppingGenTable);
 
         Shopping_Generated_Search_Lable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Shopping_Generated_Search_Lable.setText("Search: ");
@@ -540,7 +540,7 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Edit_Pannel.setBackground(new java.awt.Color(204, 204, 204));
         Shopping_List_Edit_Pannel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        shoppingEditTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -566,7 +566,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Shopping_Edit_Table.setViewportView(jTable4);
+        Shopping_Edit_Table.setViewportView(shoppingEditTable);
 
         Shopping_Edit_Search_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Shopping_Edit_Search_Label.setText("Search: ");
@@ -997,8 +997,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane invScroll;
     private javax.swing.JTable invTable;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
+    private javax.swing.JTable shoppingEditTable;
+    private javax.swing.JTable shoppingGenTable;
     private javax.swing.JTextField subBarcodeBox;
     private javax.swing.JTable subTable;
     // End of variables declaration//GEN-END:variables
