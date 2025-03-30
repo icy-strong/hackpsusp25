@@ -231,7 +231,7 @@ public class ItemQueries {
         
         // Set the parameters
         stmt.setString(1, "%" + namePattern + "%"); // Wildcard for name
-        stmt.setString(2, category); // Specific category
+        //stmt.setString(2, category); // Specific category
 
         ResultSet resultSet = stmt.executeQuery();
 

@@ -49,6 +49,8 @@ public class MainFrame extends javax.swing.JFrame {
         shoppingEditTable.setRowHeight(rowHeight);
         shoppingGenTable.setRowHeight(rowHeight);
         
+         popInvTable();
+        
         rebuildFilterBoxes();
         
     }
@@ -273,6 +275,11 @@ public class MainFrame extends javax.swing.JFrame {
         Inv_Filter_Lable.setText("Filters: ");
 
         invFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        invFilterCmbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invFilterCmboActionPerformed(evt);
+            }
+        });
 
         invTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -460,6 +467,11 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Filter_Label2.setText("Filters: ");
 
         orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgFilterFilterCmbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgFilterFilterCmboActionPerformed(evt);
+            }
+        });
 
         Org_Filter_Label3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         Org_Filter_Label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1091,29 +1103,7 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(true);
         
-        ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
-        DefaultTableModel displayClassesTableModel = (DefaultTableModel) invTable.getModel();
-        displayClassesTableModel.setRowCount(0);
-        for(ItemEntry i: allItems){
-            Object[] rowData = new Object[4];
-            try {
-                    // Load the image from the URL or file path
-                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
-                    ImageIcon imageIcon = new ImageIcon(imageUrl);
-                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
-                } catch (Exception e) {
-                    rowData[0] = null; // In case the image URL is invalid or there's an error
-                    e.printStackTrace();
-                }
-            
-            rowData[1] = i.getName();
-            rowData[2] = i.getQuantity();
-            rowData[3] = null;
-            displayClassesTableModel.addRow(rowData);
-
-            
-        }
-        invTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+        popInvTable();
 
         
     }//GEN-LAST:event_But_InventoryActionPerformed
@@ -1170,7 +1160,13 @@ public class MainFrame extends javax.swing.JFrame {
                 
                 rowData[1] = item.getName();
                 rowData[2] = item.getQuantity();
-                rowData[3] = null;
+                ArrayList<String> cats = ItemQueries.getCategoriesForItem(item.getBarcode());
+                String str = "";
+                for(String s: cats){
+                    str+=s+" ";
+                }
+                rowData[3] = str;
+                        
                 displayClassesTableModel.addRow(rowData);
             }
             
@@ -1283,10 +1279,15 @@ public class MainFrame extends javax.swing.JFrame {
                     rowData[0] = null; // In case the image URL is invalid or there's an error
                     e.printStackTrace();
                 }
-                
+                ArrayList<String> cats = ItemQueries.getCategoriesForItem(item.getBarcode());
+
                 rowData[1] = item.getName();
                 rowData[2] = item.getQuantity();
-                rowData[3] = null;
+                String str = "";
+                for(String s: cats){
+                    str+=s+" ";
+                }
+                rowData[3] = str;
                 displayClassesTableModel.addRow(rowData);
             }
             
@@ -1330,31 +1331,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_But_Remove_ItemsActionPerformed
 
     private void Inv_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Inv_Search_BoxKeyPressed
-        String search = Inv_Search_Box.getText();
-        ArrayList<ItemEntry> results = ItemQueries.searchItemsByName(search);
-        
-        DefaultTableModel displayClassesTableModel = (DefaultTableModel) invTable.getModel();
-        displayClassesTableModel.setRowCount(0);
-        for(ItemEntry i: results){
-            Object[] rowData = new Object[4];
-            try {
-                    // Load the image from the URL or file path
-                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
-                    ImageIcon imageIcon = new ImageIcon(imageUrl);
-                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
-                } catch (Exception e) {
-                    rowData[0] = null; // In case the image URL is invalid or there's an error
-                    e.printStackTrace();
-                }
-            
-            rowData[1] = i.getName();
-            rowData[2] = i.getQuantity();
-            rowData[3] = null;
-            displayClassesTableModel.addRow(rowData);
-
-            
-        }
-        invTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+        popInvTable();
     }//GEN-LAST:event_Inv_Search_BoxKeyPressed
 
     private void Org_Filter_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Org_Filter_Search_BoxActionPerformed
@@ -1396,6 +1373,7 @@ public class MainFrame extends javax.swing.JFrame {
                  }
         
         }
+        Create_Filter_Text_Box.setText("");
     }//GEN-LAST:event_But_Add_FilterActionPerformed
 
     private void But_Org_Filter_Remove_Filter_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
@@ -1469,6 +1447,64 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Customize_Pannel.setVisible(false);
     }//GEN-LAST:event_But_Org_Unpack_ToggleActionPerformed
 
+    private void invFilterCmboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invFilterCmboActionPerformed
+        popInvTable();
+    }//GEN-LAST:event_invFilterCmboActionPerformed
+
+    private void orgFilterFilterCmboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgFilterFilterCmboActionPerformed
+       String search = Org_Filter_Search_Box.getText();
+        Object s = orgFilterFilterCmbo.getSelectedItem();
+        String filt = (String)s;
+        ArrayList<ItemEntry> results;
+        if(filt.equals("None")){
+            results = ItemQueries.searchItemsByName(search);
+        }else{
+            results = ItemQueries.searchItems(search, filt);
+        }
+        popOrgItemTable(results);
+    }//GEN-LAST:event_orgFilterFilterCmboActionPerformed
+
+    private void popInvTable(){
+        String search = Inv_Search_Box.getText();
+        String b = (String) invFilterCmbo.getSelectedItem();
+        ArrayList<ItemEntry> results;
+        if(b.equals("None")){
+            results = ItemQueries.searchItemsByName(search);
+        }else{
+            results = ItemQueries.searchItems(search, b);
+        }
+        
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) invTable.getModel();
+        displayClassesTableModel.setRowCount(0);
+        for(ItemEntry i: results){
+            Object[] rowData = new Object[4];
+            try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+            
+            rowData[1] = i.getName();
+            rowData[2] = i.getQuantity();
+            ArrayList<String> cats = ItemQueries.getCategoriesForItem(i.getBarcode());
+
+            String str = "";
+                for(String s: cats){
+                    str+=s+" ";
+                }
+                rowData[3] = str;
+                
+            displayClassesTableModel.addRow(rowData);
+
+            
+        }
+        invTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+    }
+    
     /**
      * @param args the command line arguments
      */
