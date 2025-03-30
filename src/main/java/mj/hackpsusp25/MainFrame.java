@@ -1211,6 +1211,7 @@ public class MainFrame extends javax.swing.JFrame {
             rowData[1] = i.getName();
             displayClassesTableModel.addRow(rowData);
          }
+         Org_Filter_Item_Table.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
          
     }
     
@@ -1373,7 +1374,7 @@ public class MainFrame extends javax.swing.JFrame {
                      DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
                      ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
                      
-                     ItemQueries.addItemToCategory(itm.getBarcode(), CategoryQueries.getCategoryId(newFilter));
+                     ItemQueries.addItemToCategory(itm.getBarcode(), newFilter);
                      Object rowData[] = {newFilter};
                      DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Filters_Table.getModel();
 
@@ -1387,7 +1388,7 @@ public class MainFrame extends javax.swing.JFrame {
                      DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
                      ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
                      
-                     ItemQueries.addItemToCategory(itm.getBarcode(), CategoryQueries.getCategoryId(filt));
+                     ItemQueries.addItemToCategory(itm.getBarcode(), filt);
                      Object rowData[] = {filt};
                      DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Filters_Table.getModel();
 
@@ -1398,7 +1399,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_But_Add_FilterActionPerformed
 
     private void But_Org_Filter_Remove_Filter_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
 
     private void But_Org_Filter_Remove_Filter_SystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
@@ -1427,11 +1428,10 @@ public class MainFrame extends javax.swing.JFrame {
             DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
             ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
 
-            ArrayList<Integer> str = ItemQueries.getCategoriesForItem(itm.getBarcode());
+            ArrayList<String> str = ItemQueries.getCategoriesForItem(itm.getBarcode());
             int j = 0;
-            for (Integer i: str){
-                String cat = CategoryQueries.getCategoryName(i);
-                Object rowData[] = {cat};
+            for (String i: str){
+                Object rowData[] = {i};
                 displayClassesTableModel.addRow(rowData);
                 //displayClassesTableModel.setValueAt(cat, j, 0);
                 j++;
