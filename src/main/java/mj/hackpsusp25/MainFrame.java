@@ -52,12 +52,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jMenu1 = new javax.swing.JMenu();
         Main_Pannel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         But_Shopping_List = new javax.swing.JToggleButton();
@@ -67,49 +63,39 @@ public class MainFrame extends javax.swing.JFrame {
         But_Org = new javax.swing.JToggleButton();
         Base_Pannel = new javax.swing.JPanel();
         Inventory_Pannel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        Inv_Search_Lable = new javax.swing.JLabel();
+        Inv_Search_Box = new javax.swing.JTextField();
+        Inv_Filter_Lable = new javax.swing.JLabel();
         invFilterCmbo = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        Inv_Table = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Add_Pannel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        Add_Barcode_Lable = new javax.swing.JLabel();
         addBarcodeBox = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        Add_Table = new javax.swing.JScrollPane();
         addTable = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
+        But_Add_Items = new javax.swing.JButton();
         Org_Pannel = new javax.swing.JPanel();
+        Sub_Pannel = new javax.swing.JPanel();
+        Sub_Barcode_Lable = new javax.swing.JLabel();
+        subBarcodeBox = new javax.swing.JTextField();
+        Sub_Table = new javax.swing.JScrollPane();
+        subTable = new javax.swing.JTable();
+        But_Remove_Items = new javax.swing.JButton();
         Shopping_List_Pannel = new javax.swing.JPanel();
         But_Shopping_List_Edit = new javax.swing.JToggleButton();
         But_Shopping_List_Generate = new javax.swing.JToggleButton();
         Shopping_List_Card_Pannel = new javax.swing.JPanel();
         Shopping_List_Generate_Pannel = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        Shopping_Generated_Table = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         Shopping_List_Edit_Pannel = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        Shopping_Edit_Table = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        Sub_Pannel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        subBarcodeBox = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        subTable = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
-
-        jLabel1.setText("jLabel1");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-
-        jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,17 +171,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         Base_Pannel.setLayout(new java.awt.CardLayout());
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("Search: ");
+        Inv_Search_Lable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Inv_Search_Lable.setText("Search: ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Inv_Search_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                Inv_Search_BoxActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel4.setText("Filters: ");
+        Inv_Filter_Lable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Inv_Filter_Lable.setText("Filters: ");
 
         invFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -225,7 +211,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        Inv_Table.setViewportView(jTable1);
 
         javax.swing.GroupLayout Inventory_PannelLayout = new javax.swing.GroupLayout(Inventory_Pannel);
         Inventory_Pannel.setLayout(Inventory_PannelLayout);
@@ -233,16 +219,16 @@ public class MainFrame extends javax.swing.JFrame {
             Inventory_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Inventory_PannelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Inv_Search_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Inv_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Inv_Filter_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(Inventory_PannelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Inv_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1241, Short.MAX_VALUE))
         );
         Inventory_PannelLayout.setVerticalGroup(
@@ -250,19 +236,19 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(Inventory_PannelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Inventory_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
+                    .addComponent(Inv_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Inv_Search_Lable)
+                    .addComponent(Inv_Filter_Lable)
                     .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Inv_Table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(1857, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Inventory_Pannel, "card2");
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel5.setText("Barcode: ");
+        Add_Barcode_Lable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Add_Barcode_Lable.setText("Barcode: ");
 
         addBarcodeBox.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         addBarcodeBox.addActionListener(new java.awt.event.ActionListener() {
@@ -290,14 +276,16 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(addTable);
+        Add_Table.setViewportView(addTable);
 
-        jLabel9.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("ADD ITEMS");
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setOpaque(true);
+        But_Add_Items.setBackground(new java.awt.Color(204, 255, 204));
+        But_Add_Items.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        But_Add_Items.setText("ADD ITEMS");
+        But_Add_Items.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Add_ItemsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Add_PannelLayout = new javax.swing.GroupLayout(Add_Pannel);
         Add_Pannel.setLayout(Add_PannelLayout);
@@ -305,14 +293,14 @@ public class MainFrame extends javax.swing.JFrame {
             Add_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Add_PannelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(Add_Barcode_Lable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addBarcodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132)
+                .addComponent(But_Add_Items)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(Add_PannelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Add_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1226, Short.MAX_VALUE))
         );
         Add_PannelLayout.setVerticalGroup(
@@ -320,12 +308,12 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(Add_PannelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Add_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel9)
+                    .addComponent(But_Add_Items)
                     .addComponent(addBarcodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(Add_Barcode_Lable))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1803, Short.MAX_VALUE))
+                .addComponent(Add_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1796, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Add_Pannel, "card3");
@@ -342,6 +330,72 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         Base_Pannel.add(Org_Pannel, "card5");
+
+        Sub_Barcode_Lable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Sub_Barcode_Lable.setText("Barcode: ");
+
+        subBarcodeBox.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        subBarcodeBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subBarcodeBoxActionPerformed(evt);
+            }
+        });
+
+        subTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Image", "Name", "Quantity", "Filters"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Sub_Table.setViewportView(subTable);
+
+        But_Remove_Items.setBackground(new java.awt.Color(255, 204, 204));
+        But_Remove_Items.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        But_Remove_Items.setText("REMOVE ITEMS");
+
+        javax.swing.GroupLayout Sub_PannelLayout = new javax.swing.GroupLayout(Sub_Pannel);
+        Sub_Pannel.setLayout(Sub_PannelLayout);
+        Sub_PannelLayout.setHorizontalGroup(
+            Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Sub_PannelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(Sub_Barcode_Lable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(subBarcodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(But_Remove_Items)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(Sub_PannelLayout.createSequentialGroup()
+                .addComponent(Sub_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1226, Short.MAX_VALUE))
+        );
+        Sub_PannelLayout.setVerticalGroup(
+            Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Sub_PannelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(But_Remove_Items)
+                    .addComponent(subBarcodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sub_Barcode_Lable))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Sub_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1796, Short.MAX_VALUE))
+        );
+
+        Base_Pannel.add(Sub_Pannel, "card6");
 
         buttonGroup2.add(But_Shopping_List_Edit);
         But_Shopping_List_Edit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -393,19 +447,19 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(jTable5);
+        Shopping_Generated_Table.setViewportView(jTable5);
 
         javax.swing.GroupLayout Shopping_List_Generate_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Generate_Pannel);
         Shopping_List_Generate_Pannel.setLayout(Shopping_List_Generate_PannelLayout);
         Shopping_List_Generate_PannelLayout.setHorizontalGroup(
             Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(Shopping_Generated_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         Shopping_List_Generate_PannelLayout.setVerticalGroup(
             Shopping_List_Generate_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_Generate_PannelLayout.createSequentialGroup()
                 .addGap(0, 76, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Shopping_Generated_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         Shopping_List_Card_Pannel.add(Shopping_List_Generate_Pannel, "card3");
@@ -439,7 +493,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        Shopping_Edit_Table.setViewportView(jTable4);
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setText("Search: ");
@@ -459,7 +513,7 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Edit_Pannel.setLayout(Shopping_List_Edit_PannelLayout);
         Shopping_List_Edit_PannelLayout.setHorizontalGroup(
             Shopping_List_Edit_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(Shopping_List_Edit_PannelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,7 +535,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
+                .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
         );
 
         Shopping_List_Card_Pannel.add(Shopping_List_Edit_Pannel, "card2");
@@ -513,75 +567,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         Base_Pannel.add(Shopping_List_Pannel, "card6");
-
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel6.setText("Barcode: ");
-
-        subBarcodeBox.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        subBarcodeBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subBarcodeBoxActionPerformed(evt);
-            }
-        });
-
-        subTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Image", "Name", "Quantity", "Filters"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(subTable);
-
-        jLabel10.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("REMOVE ITEMS");
-        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setOpaque(true);
-
-        javax.swing.GroupLayout Sub_PannelLayout = new javax.swing.GroupLayout(Sub_Pannel);
-        Sub_Pannel.setLayout(Sub_PannelLayout);
-        Sub_PannelLayout.setHorizontalGroup(
-            Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Sub_PannelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(subBarcodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(Sub_PannelLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1226, Short.MAX_VALUE))
-        );
-        Sub_PannelLayout.setVerticalGroup(
-            Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Sub_PannelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel10)
-                    .addComponent(subBarcodeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1803, Short.MAX_VALUE))
-        );
-
-        Base_Pannel.add(Sub_Pannel, "card6");
 
         Main_Pannel.add(Base_Pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 2110, 2330));
 
@@ -634,9 +619,9 @@ public class MainFrame extends javax.swing.JFrame {
         Inventory_Pannel.setVisible(false);
     }//GEN-LAST:event_But_SubActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void Inv_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Inv_Search_BoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_Inv_Search_BoxActionPerformed
 
     private void addBarcodeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBarcodeBoxActionPerformed
         String barcode = addBarcodeBox.getText();
@@ -700,6 +685,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_subBarcodeBoxActionPerformed
 
+    private void But_Add_ItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_ItemsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_Add_ItemsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -738,51 +727,47 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Add_Barcode_Lable;
     private javax.swing.JPanel Add_Pannel;
+    private javax.swing.JScrollPane Add_Table;
     private javax.swing.JPanel Base_Pannel;
     private javax.swing.JToggleButton But_Add;
+    private javax.swing.JButton But_Add_Items;
     private javax.swing.JToggleButton But_Inventory;
     private javax.swing.JToggleButton But_Org;
+    private javax.swing.JButton But_Remove_Items;
     private javax.swing.JToggleButton But_Shopping_List;
     private javax.swing.JToggleButton But_Shopping_List_Edit;
     private javax.swing.JToggleButton But_Shopping_List_Generate;
     private javax.swing.JToggleButton But_Sub;
+    private javax.swing.JLabel Inv_Filter_Lable;
+    private javax.swing.JTextField Inv_Search_Box;
+    private javax.swing.JLabel Inv_Search_Lable;
+    private javax.swing.JScrollPane Inv_Table;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
     private javax.swing.JPanel Org_Pannel;
+    private javax.swing.JScrollPane Shopping_Edit_Table;
+    private javax.swing.JScrollPane Shopping_Generated_Table;
     private javax.swing.JPanel Shopping_List_Card_Pannel;
     private javax.swing.JPanel Shopping_List_Edit_Pannel;
     private javax.swing.JPanel Shopping_List_Generate_Pannel;
     private javax.swing.JPanel Shopping_List_Pannel;
+    private javax.swing.JLabel Sub_Barcode_Lable;
     private javax.swing.JPanel Sub_Pannel;
+    private javax.swing.JScrollPane Sub_Table;
     private javax.swing.JTextField addBarcodeBox;
     private javax.swing.JTable addTable;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> invFilterCmbo;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField subBarcodeBox;
     private javax.swing.JTable subTable;
