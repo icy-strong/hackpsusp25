@@ -150,7 +150,7 @@ public class ItemQueries {
         connection = DBConnection.getConnection();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "INSERT INTO item_categories (barcode, category_id) VALUES (?, ?) ON CONFLICT DO NOTHING"
+                "INSERT INTO app.itemcategories (barcode, category_id) VALUES (?, ?) ON CONFLICT DO NOTHING"
             );
             stmt.setString(1, barcode);
             stmt.setInt(2, categoryId);
@@ -164,7 +164,7 @@ public class ItemQueries {
         connection = DBConnection.getConnection();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "DELETE FROM item_categories WHERE item_id = ? AND category_id = ?"
+                "DELETE FROM app.itemcategories WHERE item_id = ? AND category_id = ?"
             );
             stmt.setString(1, barcode);
             stmt.setInt(2, categoryId);
@@ -206,7 +206,7 @@ public class ItemQueries {
         ArrayList<Integer> categoryIds = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT category_id FROM item_categories WHERE barcode = ?"
+                "SELECT category_id FROM app.itemcategories WHERE barcode = ?"
             );
             stmt.setString(1, barcode);
             resultSet = stmt.executeQuery();
@@ -220,7 +220,7 @@ public class ItemQueries {
     }
 
     public static ArrayList<ItemEntry> searchItems(String namePattern, String category) {
-        String query = "SELECT * FROM items WHERE name LIKE ? AND category = ?";
+        String query = "SELECT * FROM app.items WHERE name LIKE ? AND category = ?";
 
         connection = DBConnection.getConnection(); 
         ArrayList<ItemEntry> items = new ArrayList<>();
@@ -255,8 +255,8 @@ public class ItemQueries {
         ArrayList<ItemEntry> items = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT i.* FROM items i " +
-                "JOIN item_categories ic ON i.id = ic.item_id " +
+                "SELECT i.* FROM app.items i " +
+                "JOIN itemcategories ic ON i.id = ic.item_id " +
                 "WHERE ic.category_id = ?"
             );
             stmt.setInt(1, categoryId);
