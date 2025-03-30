@@ -107,6 +107,29 @@ public class MainFrame extends javax.swing.JFrame {
         addTable = new javax.swing.JTable();
         But_Add_Items = new javax.swing.JButton();
         Org_Pannel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Org_Filter_Item_Table = new javax.swing.JTable();
+        Org_Filter_Label1 = new javax.swing.JLabel();
+        Org_Filter_Search_Label = new javax.swing.JLabel();
+        Org_Filter_Search_Box = new javax.swing.JTextField();
+        Org_Filter_Label2 = new javax.swing.JLabel();
+        orgFilterFilterCmbo = new javax.swing.JComboBox<>();
+        Org_Filter_Label3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Org_Filter_Filters_Table = new javax.swing.JTable();
+        Org_Filter_Label4 = new javax.swing.JLabel();
+        Org_Filter_Label5 = new javax.swing.JLabel();
+        orgFilterAddFilterCmbo = new javax.swing.JComboBox<>();
+        But_Add_Filter = new javax.swing.JButton();
+        Org_Filter_Label6 = new javax.swing.JLabel();
+        Create_Filter_Text_Box = new javax.swing.JTextField();
+        Org_Filter_Info_Words = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        But_Org_Filter_Remove_Filter_Item = new javax.swing.JButton();
+        Org_Filter_Label7 = new javax.swing.JLabel();
+        Org_Filter_Label8 = new javax.swing.JLabel();
+        orgFilterDeleteFilterCmbo = new javax.swing.JComboBox<>();
+        But_Org_Filter_Remove_Filter_System = new javax.swing.JButton();
         Sub_Pannel = new javax.swing.JPanel();
         Sub_Barcode_Lable = new javax.swing.JLabel();
         subBarcodeBox = new javax.swing.JTextField();
@@ -358,15 +381,238 @@ public class MainFrame extends javax.swing.JFrame {
 
         Base_Pannel.add(Add_Pannel, "card3");
 
+        Org_Filter_Item_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Image", "Name", "Filters"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Org_Filter_Item_Table);
+
+        Org_Filter_Label1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        Org_Filter_Label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Org_Filter_Label1.setText("1 - Select an item");
+        Org_Filter_Label1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Org_Filter_Search_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Filter_Search_Label.setText("Search: ");
+
+        Org_Filter_Search_Box.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Org_Filter_Search_BoxActionPerformed(evt);
+            }
+        });
+
+        Org_Filter_Label2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Filter_Label2.setText("Filters: ");
+
+        orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        Org_Filter_Label3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        Org_Filter_Label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Org_Filter_Label3.setText("Edit Item Filters");
+        Org_Filter_Label3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Org_Filter_Filters_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Filter Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(Org_Filter_Filters_Table);
+
+        Org_Filter_Label4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        Org_Filter_Label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Org_Filter_Label4.setText("2. Add/Delete Filters From Item");
+        Org_Filter_Label4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Org_Filter_Label5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Filter_Label5.setText("Select Filter To Add:");
+
+        orgFilterAddFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        But_Add_Filter.setBackground(new java.awt.Color(204, 255, 204));
+        But_Add_Filter.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        But_Add_Filter.setText("Add Filter To Item");
+        But_Add_Filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Add_FilterActionPerformed(evt);
+            }
+        });
+
+        Org_Filter_Label6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Filter_Label6.setText("Create New Filter:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("To delete a filter, first select one from the table. Next click the \"Remove Filter From Item\" Button. Note: this will only delete the filter from your selected item. To delete a filter from all items look below.");
+        jTextArea1.setWrapStyleWord(true);
+        Org_Filter_Info_Words.setViewportView(jTextArea1);
+
+        But_Org_Filter_Remove_Filter_Item.setBackground(new java.awt.Color(255, 204, 204));
+        But_Org_Filter_Remove_Filter_Item.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        But_Org_Filter_Remove_Filter_Item.setText("Remove Filter From Item");
+        But_Org_Filter_Remove_Filter_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Org_Filter_Remove_Filter_ItemActionPerformed(evt);
+            }
+        });
+
+        Org_Filter_Label7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        Org_Filter_Label7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Org_Filter_Label7.setText("3. Delete Filters From System");
+        Org_Filter_Label7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        Org_Filter_Label8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Filter_Label8.setText("Select Filter To Delete:");
+
+        orgFilterDeleteFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        But_Org_Filter_Remove_Filter_System.setBackground(new java.awt.Color(255, 102, 102));
+        But_Org_Filter_Remove_Filter_System.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        But_Org_Filter_Remove_Filter_System.setText("Remove Filter FROM SYSTEM");
+        But_Org_Filter_Remove_Filter_System.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Org_Filter_Remove_Filter_SystemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout Org_PannelLayout = new javax.swing.GroupLayout(Org_Pannel);
         Org_Pannel.setLayout(Org_PannelLayout);
         Org_PannelLayout.setHorizontalGroup(
             Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2110, Short.MAX_VALUE)
+            .addGroup(Org_PannelLayout.createSequentialGroup()
+                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                        .addGap(458, 458, 458)
+                        .addComponent(Org_Filter_Label4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(14, 14, 14))
+                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                        .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Org_PannelLayout.createSequentialGroup()
+                                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                                        .addComponent(Org_Filter_Search_Label)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Org_Filter_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(Org_Filter_Label2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(orgFilterFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(Org_Filter_Label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                        .addComponent(But_Org_Filter_Remove_Filter_System, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Org_Filter_Label7, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                                        .addGap(94, 94, 94)
+                                        .addComponent(Org_Filter_Label8, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(orgFilterDeleteFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Org_Filter_Label3, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(Org_PannelLayout.createSequentialGroup()
+                                .addGap(458, 458, 458)
+                                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                                        .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(Org_Filter_Label6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(Org_Filter_Label5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(orgFilterAddFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Create_Filter_Text_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(But_Add_Filter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(But_Org_Filter_Remove_Filter_Item, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Org_Filter_Info_Words, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(150, 150, 150)))
+                .addGap(0, 945, Short.MAX_VALUE))
         );
         Org_PannelLayout.setVerticalGroup(
             Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2330, Short.MAX_VALUE)
+            .addGroup(Org_PannelLayout.createSequentialGroup()
+                .addComponent(Org_Filter_Label3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(Org_Filter_Label4)
+                    .addComponent(Org_Filter_Label1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(Org_Filter_Search_Label)
+                            .addComponent(Org_Filter_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Org_Filter_Label2)
+                            .addComponent(orgFilterFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Org_Filter_Label5)
+                            .addComponent(orgFilterAddFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Org_PannelLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(Org_PannelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Create_Filter_Text_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Org_Filter_Label6))
+                                .addGap(249, 249, 249)
+                                .addComponent(Org_Filter_Label7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Org_Filter_Label8)
+                                    .addComponent(orgFilterDeleteFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(But_Org_Filter_Remove_Filter_System, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(Org_PannelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(But_Add_Filter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Org_PannelLayout.createSequentialGroup()
+                                .addComponent(Org_Filter_Info_Words, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(But_Org_Filter_Remove_Filter_Item, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(1523, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Org_Pannel, "card5");
@@ -454,7 +700,7 @@ public class MainFrame extends javax.swing.JFrame {
         buttonGroup2.add(But_Shopping_List_Generate);
         But_Shopping_List_Generate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         But_Shopping_List_Generate.setSelected(true);
-        But_Shopping_List_Generate.setText("Generage");
+        But_Shopping_List_Generate.setText("Generate");
         But_Shopping_List_Generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 But_Shopping_List_GenerateActionPerformed(evt);
@@ -917,6 +1163,22 @@ public class MainFrame extends javax.swing.JFrame {
         invTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
     }//GEN-LAST:event_Inv_Search_BoxKeyPressed
 
+    private void Org_Filter_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Org_Filter_Search_BoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Org_Filter_Search_BoxActionPerformed
+
+    private void But_Add_FilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_FilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_Add_FilterActionPerformed
+
+    private void But_Org_Filter_Remove_Filter_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
+
+    private void But_Org_Filter_Remove_Filter_SystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -960,19 +1222,36 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane Add_Table;
     private javax.swing.JPanel Base_Pannel;
     private javax.swing.JToggleButton But_Add;
+    private javax.swing.JButton But_Add_Filter;
     private javax.swing.JButton But_Add_Items;
     private javax.swing.JToggleButton But_Inventory;
     private javax.swing.JToggleButton But_Org;
+    private javax.swing.JButton But_Org_Filter_Remove_Filter_Item;
+    private javax.swing.JButton But_Org_Filter_Remove_Filter_System;
     private javax.swing.JButton But_Remove_Items;
     private javax.swing.JToggleButton But_Shopping_List;
     private javax.swing.JToggleButton But_Shopping_List_Edit;
     private javax.swing.JToggleButton But_Shopping_List_Generate;
     private javax.swing.JToggleButton But_Sub;
+    private javax.swing.JTextField Create_Filter_Text_Box;
     private javax.swing.JLabel Inv_Filter_Lable;
     private javax.swing.JTextField Inv_Search_Box;
     private javax.swing.JLabel Inv_Search_Lable;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
+    private javax.swing.JTable Org_Filter_Filters_Table;
+    private javax.swing.JScrollPane Org_Filter_Info_Words;
+    private javax.swing.JTable Org_Filter_Item_Table;
+    private javax.swing.JLabel Org_Filter_Label1;
+    private javax.swing.JLabel Org_Filter_Label2;
+    private javax.swing.JLabel Org_Filter_Label3;
+    private javax.swing.JLabel Org_Filter_Label4;
+    private javax.swing.JLabel Org_Filter_Label5;
+    private javax.swing.JLabel Org_Filter_Label6;
+    private javax.swing.JLabel Org_Filter_Label7;
+    private javax.swing.JLabel Org_Filter_Label8;
+    private javax.swing.JTextField Org_Filter_Search_Box;
+    private javax.swing.JLabel Org_Filter_Search_Label;
     private javax.swing.JPanel Org_Pannel;
     private javax.swing.JComboBox<String> Shopping_Edit_FilterCmbo;
     private javax.swing.JLabel Shopping_Edit_Filter_Label;
@@ -999,6 +1278,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane invScroll;
     private javax.swing.JTable invTable;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JComboBox<String> orgFilterAddFilterCmbo;
+    private javax.swing.JComboBox<String> orgFilterDeleteFilterCmbo;
+    private javax.swing.JComboBox<String> orgFilterFilterCmbo;
     private javax.swing.JTable shoppingEditTable;
     private javax.swing.JTable shoppingGenTable;
     private javax.swing.JTextField subBarcodeBox;
