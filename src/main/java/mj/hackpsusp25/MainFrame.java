@@ -72,7 +72,16 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         Sub_Pannel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         Org_Pannel = new javax.swing.JPanel();
+        Shopping_List_Pannel = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        But_Org1 = new javax.swing.JToggleButton();
 
         jLabel1.setText("jLabel1");
 
@@ -101,14 +110,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(But_Org);
         But_Org.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        But_Org.setText("Org");
+        But_Org.setText("Shopping List");
         But_Org.setBorderPainted(false);
         But_Org.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 But_OrgActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 60));
+        Main_Pannel.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 170, 60));
 
         buttonGroup1.add(But_Inventory);
         But_Inventory.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -257,15 +266,53 @@ public class MainFrame extends javax.swing.JFrame {
 
         Base_Pannel.add(Add_Pannel, "card3");
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setText("Barcode: ");
+
+        jTextField3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Image", "Name", "Quantity", "Filters"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
         javax.swing.GroupLayout Sub_PannelLayout = new javax.swing.GroupLayout(Sub_Pannel);
         Sub_Pannel.setLayout(Sub_PannelLayout);
         Sub_PannelLayout.setHorizontalGroup(
             Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2110, Short.MAX_VALUE)
+            .addGroup(Sub_PannelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(Sub_PannelLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1226, Short.MAX_VALUE))
         );
         Sub_PannelLayout.setVerticalGroup(
             Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2330, Short.MAX_VALUE)
+            .addGroup(Sub_PannelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Sub_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1825, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Sub_Pannel, "card4");
@@ -283,7 +330,58 @@ public class MainFrame extends javax.swing.JFrame {
 
         Base_Pannel.add(Org_Pannel, "card5");
 
+        jToggleButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jToggleButton1.setText("Edit");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jToggleButton2.setText("Generage");
+
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout Shopping_List_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Pannel);
+        Shopping_List_Pannel.setLayout(Shopping_List_PannelLayout);
+        Shopping_List_PannelLayout.setHorizontalGroup(
+            Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Shopping_List_PannelLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(Shopping_List_PannelLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1763, Short.MAX_VALUE))
+        );
+        Shopping_List_PannelLayout.setVerticalGroup(
+            Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Shopping_List_PannelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(Shopping_List_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButton1)
+                    .addComponent(jToggleButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2272, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        Base_Pannel.add(Shopping_List_Pannel, "card6");
+
         Main_Pannel.add(Base_Pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 2110, 2330));
+
+        buttonGroup1.add(But_Org1);
+        But_Org1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        But_Org1.setText("Org");
+        But_Org1.setBorderPainted(false);
+        But_Org1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Org1ActionPerformed(evt);
+            }
+        });
+        Main_Pannel.add(But_Org1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -338,6 +436,18 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void But_Org1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_But_Org1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -381,10 +491,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton But_Add;
     private javax.swing.JToggleButton But_Inventory;
     private javax.swing.JToggleButton But_Org;
+    private javax.swing.JToggleButton But_Org1;
     private javax.swing.JToggleButton But_Sub;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
     private javax.swing.JPanel Org_Pannel;
+    private javax.swing.JPanel Shopping_List_Pannel;
     private javax.swing.JPanel Sub_Pannel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -396,12 +508,19 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
 }
