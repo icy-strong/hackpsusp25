@@ -63,7 +63,7 @@ public class ItemQueries {
                     resultSet.getString("name"),
                     resultSet.getString("brands"),
                     resultSet.getInt("quantity"),
-                    resultSet.getString("imageurl")
+                    resultSet.getString("IMGURL")
                 );
                 items.add(item);
             }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class MainFrame extends javax.swing.JFrame {
     private ArrayList<ItemEntry> newItems = new ArrayList<ItemEntry>();
+    private ArrayList<ItemEntry> subItems = new ArrayList<ItemEntry>();
     /**
      * Creates new form MainFrame
      */
@@ -38,6 +39,7 @@ public class MainFrame extends javax.swing.JFrame {
         displayClassesTableModel.setRowCount(0);
 
         addTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
+        invTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
     }
     
     static class ImageRenderer extends DefaultTableCellRenderer {
@@ -91,8 +93,8 @@ public class MainFrame extends javax.swing.JFrame {
         Inv_Search_Box = new javax.swing.JTextField();
         Inv_Filter_Lable = new javax.swing.JLabel();
         invFilterCmbo = new javax.swing.JComboBox<>();
-        Inv_Table = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        invScroll = new javax.swing.JScrollPane();
+        invTable = new javax.swing.JTable();
         Add_Pannel = new javax.swing.JPanel();
         Add_Barcode_Lable = new javax.swing.JLabel();
         addBarcodeBox = new javax.swing.JTextField();
@@ -213,7 +215,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         invFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        invTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -239,7 +241,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Inv_Table.setViewportView(jTable1);
+        invScroll.setViewportView(invTable);
 
         javax.swing.GroupLayout Inventory_PannelLayout = new javax.swing.GroupLayout(Inventory_Pannel);
         Inventory_Pannel.setLayout(Inventory_PannelLayout);
@@ -256,7 +258,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(Inventory_PannelLayout.createSequentialGroup()
-                .addComponent(Inv_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(invScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1241, Short.MAX_VALUE))
         );
         Inventory_PannelLayout.setVerticalGroup(
@@ -269,7 +271,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(Inv_Filter_Lable)
                     .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(Inv_Table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(invScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(1857, Short.MAX_VALUE))
         );
 
@@ -393,6 +395,11 @@ public class MainFrame extends javax.swing.JFrame {
         But_Remove_Items.setBackground(new java.awt.Color(255, 204, 204));
         But_Remove_Items.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         But_Remove_Items.setText("REMOVE ITEMS");
+        But_Remove_Items.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                But_Remove_ItemsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Sub_PannelLayout = new javax.swing.GroupLayout(Sub_Pannel);
         Sub_Pannel.setLayout(Sub_PannelLayout);
@@ -659,6 +666,31 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(true);
         
+        ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) invTable.getModel();
+        displayClassesTableModel.setRowCount(0);
+        for(ItemEntry i: allItems){
+            Object[] rowData = new Object[4];
+            try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+            
+            rowData[1] = i.getName();
+            rowData[2] = i.getQuantity();
+            rowData[3] = null;
+            displayClassesTableModel.addRow(rowData);
+
+            
+        }
+        invTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+
+        
     }//GEN-LAST:event_But_InventoryActionPerformed
 
     private void But_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_AddActionPerformed
@@ -750,7 +782,49 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Shopping_Edit_Search_BoxActionPerformed
 
     private void subBarcodeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBarcodeBoxActionPerformed
-        // TODO add your handling code here:
+        String barcode = subBarcodeBox.getText();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) subTable.getModel();
+
+        try{
+            ItemEntry item = BarcodeInterface.getProduct(barcode); 
+            boolean itemExists = false;
+            
+            for(int i=0; i<subItems.size(); i++){
+                if(subItems.get(i).getBarcode().equals(barcode)){ //old item, so add quantity
+                    itemExists = true;
+                    subItems.get(i).setQuantity(subItems.get(i).getQuantity()+1);
+                    displayClassesTableModel.setValueAt(subItems.get(i).getQuantity(), i, 2);
+                }
+            }
+            
+            if(!itemExists){ //new item
+                subItems.add(item);
+                Object[] rowData = new Object[4];
+                
+                try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(item.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+                
+                rowData[1] = item.getName();
+                rowData[2] = item.getQuantity();
+                rowData[3] = null;
+                displayClassesTableModel.addRow(rowData);
+            }
+            
+            
+            subTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+            
+            subBarcodeBox.setText("");
+            
+        } catch(Exception e){
+        
+        }
     }//GEN-LAST:event_subBarcodeBoxActionPerformed
 
     private void But_Add_ItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_ItemsActionPerformed
@@ -767,6 +841,20 @@ public class MainFrame extends javax.swing.JFrame {
     private void Shopping_Generated_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Generated_Search_BoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Shopping_Generated_Search_BoxActionPerformed
+
+    private void But_Remove_ItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Remove_ItemsActionPerformed
+        for(ItemEntry i : subItems){
+            ItemEntry old = ItemQueries.getItemByBarcode(i.getBarcode());
+            if(old!=null){
+                old.setQuantity(old.getQuantity()-i.getQuantity());
+            }
+            
+            ItemQueries.updateItem(old);
+        }
+        subItems = new ArrayList<ItemEntry>();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) subTable.getModel();
+        displayClassesTableModel.setRowCount(0);
+    }//GEN-LAST:event_But_Remove_ItemsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -822,7 +910,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Inv_Filter_Lable;
     private javax.swing.JTextField Inv_Search_Box;
     private javax.swing.JLabel Inv_Search_Lable;
-    private javax.swing.JScrollPane Inv_Table;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
     private javax.swing.JPanel Org_Pannel;
@@ -848,8 +935,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> invFilterCmbo;
+    private javax.swing.JScrollPane invScroll;
+    private javax.swing.JTable invTable;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField subBarcodeBox;

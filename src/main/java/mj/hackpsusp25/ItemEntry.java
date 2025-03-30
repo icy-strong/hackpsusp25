@@ -61,7 +61,13 @@ public class ItemEntry {
     public void setBarcode(String barcode) { this.barcode = barcode; }
     public void setName(String name) { this.name = name; }
     public void setCategoryIds(ArrayList<Integer> categoryIds) { this.categoryIds = categoryIds; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setQuantity(int quantity) { 
+        if(quantity>=0){
+            this.quantity = quantity; 
+        }else{
+            this.quantity = 0;
+        }
+    }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setBrands(String brands) { this.brands = brands; }
 
