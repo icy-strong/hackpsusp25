@@ -114,6 +114,8 @@ public class MainFrame extends javax.swing.JFrame {
         addTable = new javax.swing.JTable();
         But_Add_Items = new javax.swing.JButton();
         Org_Pannel = new javax.swing.JPanel();
+        Org_Card_Pannel = new javax.swing.JPanel();
+        Org_Filter_Pannel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Org_Filter_Item_Table = new javax.swing.JTable();
         Org_Filter_Label1 = new javax.swing.JLabel();
@@ -388,6 +390,21 @@ public class MainFrame extends javax.swing.JFrame {
 
         Base_Pannel.add(Add_Pannel, "card3");
 
+        Org_Card_Pannel.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout Org_Filter_PannelLayout = new javax.swing.GroupLayout(Org_Filter_Pannel);
+        Org_Filter_Pannel.setLayout(Org_Filter_PannelLayout);
+        Org_Filter_PannelLayout.setHorizontalGroup(
+            Org_Filter_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        Org_Filter_PannelLayout.setVerticalGroup(
+            Org_Filter_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        Org_Card_Pannel.add(Org_Filter_Pannel, "card2");
+
         Org_Filter_Item_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -493,6 +510,7 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Filter_Label6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label6.setText("Create New Filter:");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jTextArea1.setLineWrap(true);
@@ -582,6 +600,11 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(Org_Filter_Info_Words, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGap(150, 150, 150)))
                 .addGap(0, 925, Short.MAX_VALUE))
+            .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Org_PannelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Org_Card_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         Org_PannelLayout.setVerticalGroup(
             Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,6 +652,11 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(But_Org_Filter_Remove_Filter_Item, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(1574, Short.MAX_VALUE))
+            .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Org_PannelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Org_Card_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         Base_Pannel.add(Org_Pannel, "card5");
@@ -1346,6 +1374,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Inv_Search_Lable;
     private javax.swing.JPanel Inventory_Pannel;
     private javax.swing.JPanel Main_Pannel;
+    private javax.swing.JPanel Org_Card_Pannel;
     private javax.swing.JTable Org_Filter_Filters_Table;
     private javax.swing.JScrollPane Org_Filter_Info_Words;
     private javax.swing.JTable Org_Filter_Item_Table;
@@ -1357,6 +1386,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Org_Filter_Label6;
     private javax.swing.JLabel Org_Filter_Label7;
     private javax.swing.JLabel Org_Filter_Label8;
+    private javax.swing.JPanel Org_Filter_Pannel;
     private javax.swing.JTextField Org_Filter_Search_Box;
     private javax.swing.JLabel Org_Filter_Search_Label;
     private javax.swing.JPanel Org_Pannel;
