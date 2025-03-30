@@ -122,4 +122,84 @@ public class ItemQueries {
             sqlException.printStackTrace();
         }
     }
+    
+    public static void addItemToCategory(String barcode, int categoryId) {
+        connection = DBConnection.getConnection();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                "INSERT INTO item_categories (item_id, category_id) VALUES (?, ?) ON CONFLICT DO NOTHING"
+            );
+            stmt.setString(1, barcode);
+            stmt.setInt(2, categoryId);
+            stmt.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+    
+    public static void removeItemFromCategory(String barcode, int categoryId) {
+        connection = DBConnection.getConnection();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM item_categories WHERE item_id = ? AND category_id = ?"
+            );
+            stmt.setString(1, barcode);
+            stmt.setInt(2, categoryId);
+            stmt.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+    
+    public static ArrayList<Integer> getCategoriesForItem(String barcode) {
+        connection = DBConnection.getConnection();
+        ArrayList<Integer> categoryIds = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                "SELECT category_id FROM item_categories WHERE item_id = ?"
+            );
+            stmt.setString(1, barcode);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                categoryIds.add(resultSet.getInt("category_id"));
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return categoryIds;
+    }
+
+
+    public static ArrayList<ItemEntry> getItemsByCategory(int categoryId) {
+        connection = DBConnection.getConnection();
+        ArrayList<ItemEntry> items = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                "SELECT i.* FROM items i " +
+                "JOIN item_categories ic ON i.id = ic.item_id " +
+                "WHERE ic.category_id = ?"
+            );
+            stmt.setInt(1, categoryId);
+            resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                ItemEntry item = new ItemEntry(
+                    resultSet.getString("barcode"),
+                    resultSet.getString("name"),
+                    resultSet.getString("brands"),
+                    resultSet.getInt("quantity"),
+                    resultSet.getString("image_url")
+                );
+                items.add(item);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return items;
+    }
+
+
+
+
+    
 }

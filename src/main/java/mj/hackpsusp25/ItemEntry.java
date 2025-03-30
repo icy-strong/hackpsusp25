@@ -60,7 +60,7 @@ public class ItemEntry {
     public void setItemId(int itemId) { this.itemId = itemId; }
     public void setBarcode(String barcode) { this.barcode = barcode; }
     public void setName(String name) { this.name = name; }
-public void setCategoryIds(ArrayList<Integer> categoryIds) { this.categoryIds = categoryIds; }
+    public void setCategoryIds(ArrayList<Integer> categoryIds) { this.categoryIds = categoryIds; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setBrands(String brands) { this.brands = brands; }
