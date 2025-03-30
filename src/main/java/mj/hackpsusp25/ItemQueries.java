@@ -197,6 +197,36 @@ public class ItemQueries {
         return categoryIds;
     }
 
+    public static ArrayList<ItemEntry> searchItems(String namePattern, String category) {
+        String query = "SELECT * FROM items WHERE name LIKE ? AND category = ?";
+
+        connection = DBConnection.getConnection(); 
+        ArrayList<ItemEntry> items = new ArrayList<>();
+        try {
+        PreparedStatement stmt = connection.prepareStatement(query);
+        
+        // Set the parameters
+        stmt.setString(1, "%" + namePattern + "%"); // Wildcard for name
+        stmt.setString(2, category); // Specific category
+
+        ResultSet resultSet = stmt.executeQuery();
+
+        
+        while (resultSet.next()) {
+            // Assuming you have an Item class with an appropriate constructor
+            ItemEntry item = new ItemEntry( resultSet.getString("barcode"),
+                                 resultSet.getString("name"),
+                                 resultSet.getString("brands"), resultSet.getInt("quantity"), 
+                                 resultSet.getString("IMGURL"));
+            items.add(item);
+        }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
+        return items;
+    }
+
 
     public static ArrayList<ItemEntry> getItemsByCategory(int categoryId) {
         connection = DBConnection.getConnection();

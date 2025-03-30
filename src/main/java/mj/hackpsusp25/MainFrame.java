@@ -24,6 +24,8 @@ public class MainFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
+        int rowHeight = 70;
+        
         initComponents(); // Initialize UI components
         Color Main_Background_Color = new java.awt.Color (255, 230, 215);
         Color Background_Color = new java.awt.Color (235, 230, 230);
@@ -39,11 +41,12 @@ public class MainFrame extends javax.swing.JFrame {
         displayClassesTableModel.setRowCount(0);
         subModel.setRowCount(0);
 
-        addTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
-        invTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
-        subTable.setRowHeight(120);
-        shoppingEditTable.setRowHeight(120);
-        shoppingGenTable.setRowHeight(120);
+        addTable.setRowHeight(rowHeight);  // Set the row height to 120 (adjust as needed)
+        invTable.setRowHeight(rowHeight);  // Set the row height to 120 (adjust as needed)
+        subTable.setRowHeight(rowHeight);
+        Org_Filter_Item_Table.setRowHeight(rowHeight);
+        shoppingEditTable.setRowHeight(rowHeight);
+        shoppingGenTable.setRowHeight(rowHeight);
         
     }
     
@@ -169,7 +172,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("AT HOME INVENTORY MANAGMENT SYSTEM");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Main_Pannel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 1180, 90));
+        Main_Pannel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 860, 60));
 
         buttonGroup1.add(But_Shopping_List);
         But_Shopping_List.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -180,7 +183,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_Shopping_ListActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Shopping_List, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 170, 60));
+        Main_Pannel.add(But_Shopping_List, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 170, 60));
 
         buttonGroup1.add(But_Inventory);
         But_Inventory.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -192,7 +195,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_InventoryActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 150, 60));
+        Main_Pannel.add(But_Inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 150, 60));
 
         buttonGroup1.add(But_Add);
         But_Add.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -203,7 +206,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_AddActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 150, 60));
+        Main_Pannel.add(But_Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 150, 60));
 
         buttonGroup1.add(But_Sub);
         But_Sub.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -214,7 +217,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_SubActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Sub, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 150, 60));
+        Main_Pannel.add(But_Sub, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 150, 60));
 
         buttonGroup1.add(But_Org);
         But_Org.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -225,7 +228,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_OrgActionPerformed(evt);
             }
         });
-        Main_Pannel.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 60));
+        Main_Pannel.add(But_Org, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 150, 60));
 
         Base_Pannel.setLayout(new java.awt.CardLayout());
 
@@ -305,7 +308,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(invScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1857, Short.MAX_VALUE))
+                .addContainerGap(1906, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Inventory_Pannel, "card2");
@@ -376,24 +379,24 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(Add_Barcode_Lable))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Add_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1796, Short.MAX_VALUE))
+                .addContainerGap(1851, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Add_Pannel, "card3");
 
         Org_Filter_Item_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Image", "Name", "Filters"
+                "Image", "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -413,6 +416,11 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Filter_Search_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Org_Filter_Search_BoxActionPerformed(evt);
+            }
+        });
+        Org_Filter_Search_Box.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Org_Filter_Search_BoxKeyPressed(evt);
             }
         });
 
@@ -536,7 +544,6 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(orgFilterFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1)
                                     .addComponent(Org_Filter_Label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                         .addComponent(But_Org_Filter_Remove_Filter_System, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -565,7 +572,7 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(But_Org_Filter_Remove_Filter_Item, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Org_Filter_Info_Words, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGap(150, 150, 150)))
-                .addGap(0, 945, Short.MAX_VALUE))
+                .addGap(0, 925, Short.MAX_VALUE))
         );
         Org_PannelLayout.setVerticalGroup(
             Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,7 +607,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGroup(Org_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Org_Filter_Label8)
                                     .addComponent(orgFilterDeleteFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(But_Org_Filter_Remove_Filter_System, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(Org_PannelLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -612,7 +619,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(But_Org_Filter_Remove_Filter_Item, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(1523, Short.MAX_VALUE))
+                .addContainerGap(1574, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Org_Pannel, "card5");
@@ -683,7 +690,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(Sub_Barcode_Lable))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Sub_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1796, Short.MAX_VALUE))
+                .addContainerGap(1851, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Sub_Pannel, "card6");
@@ -884,12 +891,12 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(But_Shopping_List_Edit))
                 .addGap(55, 55, 55)
                 .addComponent(Shopping_List_Card_Pannel, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1549, Short.MAX_VALUE))
+                .addContainerGap(1602, Short.MAX_VALUE))
         );
 
         Base_Pannel.add(Shopping_List_Pannel, "card6");
 
-        Main_Pannel.add(Base_Pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 2110, 2330));
+        Main_Pannel.add(Base_Pannel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 2110, 2380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1021,8 +1028,32 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Pannel.setVisible(true);
         Shopping_List_Pannel.setVisible(false);
         Inventory_Pannel.setVisible(false);
+        popOrgItemTable(ItemQueries.getAllItems());
+        
     }//GEN-LAST:event_But_OrgActionPerformed
 
+    private void popOrgItemTable(ArrayList<ItemEntry> items){
+         DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Item_Table.getModel();
+         displayClassesTableModel.setRowCount(0);
+         
+         for(ItemEntry i: items){
+            Object[] rowData = new Object[2];
+            try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+            
+            rowData[1] = i.getName();
+            displayClassesTableModel.addRow(rowData);
+         }
+         
+    }
+    
     private void But_Shopping_List_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_EditActionPerformed
         Shopping_List_Edit_Pannel.setVisible(true);
         Shopping_List_Generate_Pannel.setVisible(false);
@@ -1178,6 +1209,12 @@ public class MainFrame extends javax.swing.JFrame {
     private void But_Org_Filter_Remove_Filter_SystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
+
+    private void Org_Filter_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Org_Filter_Search_BoxKeyPressed
+        String search = Org_Filter_Search_Box.getText();
+        ArrayList<ItemEntry> results = ItemQueries.searchItemsByName(search);
+        popOrgItemTable(results);
+    }//GEN-LAST:event_Org_Filter_Search_BoxKeyPressed
 
     /**
      * @param args the command line arguments
