@@ -773,6 +773,29 @@ public class MainFrame extends javax.swing.JFrame {
     private void But_Shopping_List_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_EditActionPerformed
         Shopping_List_Edit_Pannel.setVisible(true);
         Shopping_List_Generate_Pannel.setVisible(false);
+        ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) Shopping_Edit_Table.getModel();
+        displayClassesTableModel.setRowCount(0);
+        for(ItemEntry i: allItems){
+            Object[] rowData = new Object[4];
+            try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+            
+            rowData[1] = i.getName();
+            rowData[2] = null;
+            rowData[3] = null;
+            displayClassesTableModel.addRow(rowData);
+
+            
+        }
+        Shopping_Edit_Table.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
     }//GEN-LAST:event_But_Shopping_List_EditActionPerformed
 
     private void But_Shopping_List_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_GenerateActionPerformed
