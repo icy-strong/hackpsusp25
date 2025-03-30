@@ -90,6 +90,8 @@ public class MainFrame extends javax.swing.JFrame {
         orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
         orgFilterAddFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
         orgFilterDeleteFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
+        Shopping_Edit_FilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
+        Shopping_GeneratedFilterCmbo1.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
     }
 
     /**
@@ -1288,33 +1290,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     Shopping_List_Edit_Pannel.setVisible(true);
     Shopping_List_Generate_Pannel.setVisible(false);
     Shopping_Select_Pannel.setVisible(false);
-    ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
-    DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingEditTable.getModel();
-    displayClassesTableModel.setRowCount(0);
-
-    for (ItemEntry i : allItems) {
-        Object[] rowData = new Object[4];
-        try {
-            URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
-            ImageIcon imageIcon = new ImageIcon(imageUrl);
-            rowData[0] = imageIcon;
-        } catch (Exception e) {
-            rowData[0] = null; // In case the image URL is invalid or there's an error
-            e.printStackTrace();
-        }
-        
-        rowData[1] = i.getName();
-        rowData[2] = null;
-        rowData[3] = 1; // Default value for spinner
-
-        displayClassesTableModel.addRow(rowData);
-    }
-
-    shoppingEditTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
-    
-    // Set Spinner as both Editor and Renderer
-    shoppingEditTable.getColumnModel().getColumn(3).setCellEditor(new SpinnerEditor());
-    shoppingEditTable.getColumnModel().getColumn(3).setCellRenderer(new SpinnerRenderer());
+    popShopEditTable();
     }//GEN-LAST:event_But_Shopping_List_EditActionPerformed
     
     private void But_Shopping_List_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_GenerateActionPerformed
@@ -1558,15 +1534,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     }//GEN-LAST:event_shopSaveBtnActionPerformed
 
     private void Shopping_Edit_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Shopping_Edit_Search_BoxKeyPressed
-        DefaultTableModel model = (DefaultTableModel) shoppingEditTable.getModel();
-
-        for (int row = 0; row < model.getRowCount(); row++) {
-            Integer value = (Integer)model.getValueAt(row, 3); 
-            System.out.println(value);
-            if (value < 0){value = 0;}
-            ItemEntry itm = ItemQueries.getItemByName((String)model.getValueAt(row, 1));
-            ItemQueries.updateDesitedAmt(itm.getBarcode(), value);
-        }
+        popShopEditTable();
     }//GEN-LAST:event_Shopping_Edit_Search_BoxKeyPressed
 
     private void Shopping_Edit_FilterCmboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Edit_FilterCmboActionPerformed
