@@ -39,6 +39,33 @@ public class CategoryQueries {
         }
     }
 
+    public static void removeCategory(String categoryName){
+        connection = DBConnection.getConnection();
+        
+        try {
+            addCategory = connection.prepareStatement(
+                "DELETE FROM app.categories WHERE name = ?"
+            );
+            addCategory.setString(1, categoryName);
+            addCategory.executeUpdate();
+            System.out.println("Category removed: " + categoryName);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        
+        try {
+            addCategory = connection.prepareStatement(
+                "DELETE FROM app.itemcategories WHERE cat_name = ?"
+            );
+            addCategory.setString(1, categoryName);
+            addCategory.executeUpdate();
+            System.out.println("Category removed: " + categoryName);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        
+        
+    }
     
     public static Integer getCategoryIdByName(String categoryName) {
         connection = DBConnection.getConnection();

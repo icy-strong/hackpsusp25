@@ -13,6 +13,7 @@ import javax.swing.table.TableCellRenderer;
 public class MainFrame extends javax.swing.JFrame {
     private ArrayList<ItemEntry> newItems = new ArrayList<ItemEntry>();
     private ArrayList<ItemEntry> subItems = new ArrayList<ItemEntry>();
+    private ItemEntry orgSelected;
     /**
      * Creates new form MainFrame
      */
@@ -83,6 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
         invFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
         orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
         orgFilterAddFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
+        orgFilterDeleteFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel(filters.toArray()));
     }
 
     /**
@@ -1401,7 +1403,6 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     private void But_Add_FilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_FilterActionPerformed
        Object s = orgFilterAddFilterCmbo.getSelectedItem();
         String filt = (String)s;
-        ArrayList<ItemEntry> results;
         if(filt.equals("None")){
             try{
                 String newFilter = Create_Filter_Text_Box.getText();
@@ -1410,8 +1411,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
                  int row = Org_Filter_Item_Table.getSelectedRow();
                  
                  if(row>-1){
-                     DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
-                     ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
+                     ItemEntry itm = orgSelected;
                      
                      ItemQueries.addItemToCategory(itm.getBarcode(), newFilter);
                      Object rowData[] = {newFilter};
@@ -1438,11 +1438,22 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     }//GEN-LAST:event_But_Add_FilterActionPerformed
 
     private void But_Org_Filter_Remove_Filter_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
-       
+       int row = Org_Filter_Filters_Table.getSelectedRow();
+       DefaultTableModel displayClassesTableModel = (DefaultTableModel) Org_Filter_Filters_Table.getModel();
+       if(row>-1){
+           String gilt =(String) displayClassesTableModel.getValueAt(row, 0);
+           ItemQueries.removeItemFromCategory(orgSelected.getBarcode(), gilt);
+           displayClassesTableModel.removeRow(row);
+       }
     }//GEN-LAST:event_But_Org_Filter_Remove_Filter_ItemActionPerformed
 
     private void But_Org_Filter_Remove_Filter_SystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
-        // TODO add your handling code here:
+        String s = (String) orgFilterDeleteFilterCmbo.getSelectedItem();
+        if(!s.equals("None")){
+            CategoryQueries.removeCategory(s);
+            rebuildFilterBoxes();
+        }
+        
     }//GEN-LAST:event_But_Org_Filter_Remove_Filter_SystemActionPerformed
 
     private void Org_Filter_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Org_Filter_Search_BoxKeyPressed
@@ -1466,6 +1477,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
        if(row>-1){
             DefaultTableModel itemTableGett = (DefaultTableModel) Org_Filter_Item_Table.getModel();
             ItemEntry itm = ItemQueries.getItemByName((String)itemTableGett.getValueAt(row, 1));
+            orgSelected = itm;
 
             ArrayList<String> str = ItemQueries.getCategoriesForItem(itm.getBarcode());
             int j = 0;
