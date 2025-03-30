@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
             if (value instanceof ImageIcon) {
                 ImageIcon imageIcon = (ImageIcon) value;
             Image image = imageIcon.getImage(); // Get the image from the icon
-            Image resizedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Resize the image
+            Image resizedImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH); // Resize the image
             setIcon(new ImageIcon(resizedImage)); // Set the resized image as the icon
                 setText("");                 // Optionally clear the text in the cell
             } else {
@@ -210,6 +210,11 @@ public class MainFrame extends javax.swing.JFrame {
         Inv_Search_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Inv_Search_BoxActionPerformed(evt);
+            }
+        });
+        Inv_Search_Box.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Inv_Search_BoxKeyPressed(evt);
             }
         });
 
@@ -858,6 +863,34 @@ public class MainFrame extends javax.swing.JFrame {
         DefaultTableModel displayClassesTableModel = (DefaultTableModel) subTable.getModel();
         displayClassesTableModel.setRowCount(0);
     }//GEN-LAST:event_But_Remove_ItemsActionPerformed
+
+    private void Inv_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Inv_Search_BoxKeyPressed
+        String search = Inv_Search_Box.getText();
+        ArrayList<ItemEntry> results = ItemQueries.searchItemsByName(search);
+        
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) invTable.getModel();
+        displayClassesTableModel.setRowCount(0);
+        for(ItemEntry i: results){
+            Object[] rowData = new Object[4];
+            try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+            
+            rowData[1] = i.getName();
+            rowData[2] = i.getQuantity();
+            rowData[3] = null;
+            displayClassesTableModel.addRow(rowData);
+
+            
+        }
+        invTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+    }//GEN-LAST:event_Inv_Search_BoxKeyPressed
 
     /**
      * @param args the command line arguments
