@@ -33,6 +33,10 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Pannel.setBackground(Background_Color);
         Shopping_List_Pannel.setBackground(Background_Color);
                 
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) addTable.getModel();
+
+        displayClassesTableModel.setRowCount(0);
+
         addTable.setRowHeight(120);  // Set the row height to 120 (adjust as needed)
     }
     
@@ -679,6 +683,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addBarcodeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBarcodeBoxActionPerformed
         String barcode = addBarcodeBox.getText();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) addTable.getModel();
+
         try{
             ItemEntry item = BarcodeInterface.getProduct(barcode); 
             boolean itemExists = false;
@@ -687,22 +693,17 @@ public class MainFrame extends javax.swing.JFrame {
                 if(newItems.get(i).getBarcode().equals(barcode)){ //old item, so add quantity
                     itemExists = true;
                     newItems.get(i).setQuantity(newItems.get(i).getQuantity()+1);
+                    displayClassesTableModel.setValueAt(newItems.get(i).getQuantity(), i, 2);
                 }
             }
             
-            if(!itemExists){ //new item
+            if(!itemExists && item!=null){ //new item
                 newItems.add(item);
-            }
-            
-            DefaultTableModel displayClassesTableModel = (DefaultTableModel) addTable.getModel();
-            
-            displayClassesTableModel.setNumRows(0);
-            for (ItemEntry i : newItems) {
                 Object[] rowData = new Object[4];
                 
-                 try {
+                try {
                     // Load the image from the URL or file path
-                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    URL imageUrl = new URL(item.getImageUrl()); // Assuming getImageUrl() returns a valid URL
                     ImageIcon imageIcon = new ImageIcon(imageUrl);
                     rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
                 } catch (Exception e) {
@@ -710,12 +711,13 @@ public class MainFrame extends javax.swing.JFrame {
                     e.printStackTrace();
                 }
                 
-                //rowData[0] = null;
-                rowData[1] = i.getName();
-                rowData[2] = i.getQuantity();
+                rowData[1] = item.getName();
+                rowData[2] = item.getQuantity();
                 rowData[3] = null;
                 displayClassesTableModel.addRow(rowData);
             }
+            
+            
             addTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
             
             addBarcodeBox.setText("");
@@ -752,7 +754,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_subBarcodeBoxActionPerformed
 
     private void But_Add_ItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Add_ItemsActionPerformed
-        // TODO add your handling code here:
+        for(ItemEntry i : newItems){
+            ItemQueries.addItem(i);
+        }
+        newItems = new ArrayList<ItemEntry>();
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) addTable.getModel();
+        displayClassesTableModel.setRowCount(0);
+
+        
     }//GEN-LAST:event_But_Add_ItemsActionPerformed
 
     private void Shopping_Generated_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Generated_Search_BoxActionPerformed
