@@ -144,14 +144,15 @@ public class MainFrame extends javax.swing.JFrame {
         orgFilterDeleteFilterCmbo = new javax.swing.JComboBox<>();
         But_Org_Filter_Remove_Filter_System = new javax.swing.JButton();
         Org_Unpack_Pannel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Org_Unpack_Master_Label = new javax.swing.JLabel();
+        Org_Unpack_Barcode_Input = new javax.swing.JTextField();
+        Org_Unpack_Number_Label = new javax.swing.JLabel();
+        But_Org_Unpack_Submit_Number = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Org_Unpack_Table = new javax.swing.JTable();
+        Org_Unpack_Number_Select = new javax.swing.JSpinner();
         Org_Customize_Pannel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         But_Org_Customize_Toggle = new javax.swing.JToggleButton();
         But_Org_Filter_Toggle = new javax.swing.JToggleButton();
         But_Org_Unpack_Toggle = new javax.swing.JToggleButton();
@@ -661,26 +662,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         Org_Card_Pannel.add(Org_Filter_Pannel, "card2");
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel1.setText("Master Barcode: ");
+        Org_Unpack_Master_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Unpack_Master_Label.setText("Master Barcode: ");
 
-        jTextField1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Unpack_Barcode_Input.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel3.setText("Number Of Items Inside:");
+        Org_Unpack_Number_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Org_Unpack_Number_Label.setText("Number Of Items Inside:");
 
-        jTextField2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        But_Org_Unpack_Submit_Number.setBackground(new java.awt.Color(204, 255, 204));
+        But_Org_Unpack_Submit_Number.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        But_Org_Unpack_Submit_Number.setText("Submit");
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton1.setText("Submit");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Org_Unpack_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -699,7 +693,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(Org_Unpack_Table);
 
         javax.swing.GroupLayout Org_Unpack_PannelLayout = new javax.swing.GroupLayout(Org_Unpack_Pannel);
         Org_Unpack_Pannel.setLayout(Org_Unpack_PannelLayout);
@@ -707,15 +701,15 @@ public class MainFrame extends javax.swing.JFrame {
             Org_Unpack_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Org_Unpack_PannelLayout.createSequentialGroup()
                 .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(Org_Unpack_Master_Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Org_Unpack_Barcode_Input, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Org_Unpack_Number_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Org_Unpack_Number_Select, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(But_Org_Unpack_Submit_Number, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addComponent(jScrollPane3)
         );
@@ -724,26 +718,35 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(Org_Unpack_PannelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(Org_Unpack_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(Org_Unpack_Master_Label)
+                    .addComponent(Org_Unpack_Barcode_Input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Org_Unpack_Number_Label)
+                    .addComponent(But_Org_Unpack_Submit_Number)
+                    .addComponent(Org_Unpack_Number_Select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
         );
 
         Org_Card_Pannel.add(Org_Unpack_Pannel, "card3");
 
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 48)); // NOI18N
+        jLabel4.setText("To Be Implimented");
+
         javax.swing.GroupLayout Org_Customize_PannelLayout = new javax.swing.GroupLayout(Org_Customize_Pannel);
         Org_Customize_Pannel.setLayout(Org_Customize_PannelLayout);
         Org_Customize_PannelLayout.setHorizontalGroup(
             Org_Customize_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(Org_Customize_PannelLayout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         Org_Customize_PannelLayout.setVerticalGroup(
             Org_Customize_PannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGroup(Org_Customize_PannelLayout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jLabel4)
+                .addContainerGap(519, Short.MAX_VALUE))
         );
 
         Org_Card_Pannel.add(Org_Customize_Pannel, "card4");
@@ -1466,10 +1469,6 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Customize_Pannel.setVisible(false);
     }//GEN-LAST:event_But_Org_Unpack_ToggleActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1521,6 +1520,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton But_Org_Filter_Remove_Filter_Item;
     private javax.swing.JButton But_Org_Filter_Remove_Filter_System;
     private javax.swing.JToggleButton But_Org_Filter_Toggle;
+    private javax.swing.JButton But_Org_Unpack_Submit_Number;
     private javax.swing.JToggleButton But_Org_Unpack_Toggle;
     private javax.swing.JButton But_Remove_Items;
     private javax.swing.JToggleButton But_Shopping_List;
@@ -1550,7 +1550,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField Org_Filter_Search_Box;
     private javax.swing.JLabel Org_Filter_Search_Label;
     private javax.swing.JPanel Org_Pannel;
+    private javax.swing.JTextField Org_Unpack_Barcode_Input;
+    private javax.swing.JLabel Org_Unpack_Master_Label;
+    private javax.swing.JLabel Org_Unpack_Number_Label;
+    private javax.swing.JSpinner Org_Unpack_Number_Select;
     private javax.swing.JPanel Org_Unpack_Pannel;
+    private javax.swing.JTable Org_Unpack_Table;
     private javax.swing.JComboBox<String> Shopping_Edit_FilterCmbo;
     private javax.swing.JLabel Shopping_Edit_Filter_Label;
     private javax.swing.JTextField Shopping_Edit_Search_Box;
@@ -1576,17 +1581,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> invFilterCmbo;
     private javax.swing.JScrollPane invScroll;
     private javax.swing.JTable invTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> orgFilterAddFilterCmbo;
     private javax.swing.JComboBox<String> orgFilterDeleteFilterCmbo;
     private javax.swing.JComboBox<String> orgFilterFilterCmbo;
