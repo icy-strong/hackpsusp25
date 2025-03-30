@@ -3,10 +3,12 @@ package mj.hackpsusp25;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 import java.awt.*;
 import com.formdev.flatlaf.FlatLightLaf; // Import FlatLaf
 import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.table.TableCellRenderer;
 
 public class MainFrame extends javax.swing.JFrame {
     private ArrayList<ItemEntry> newItems = new ArrayList<ItemEntry>();
@@ -75,6 +77,8 @@ public class MainFrame extends javax.swing.JFrame {
             return this;
         }
     }
+    
+    
     
     public void rebuildFilterBoxes(){
         ArrayList<String> filters = CategoryQueries.getAllCategories();
@@ -871,6 +875,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         buttonGroup2.add(But_Shopping_List_Edit);
         But_Shopping_List_Edit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        But_Shopping_List_Edit.setSelected(true);
         But_Shopping_List_Edit.setText("Edit");
         But_Shopping_List_Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -880,7 +885,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         buttonGroup2.add(But_Shopping_List_Generate);
         But_Shopping_List_Generate.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        But_Shopping_List_Generate.setSelected(true);
         But_Shopping_List_Generate.setText("Generate");
         But_Shopping_List_Generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1212,35 +1216,70 @@ public class MainFrame extends javax.swing.JFrame {
          Org_Filter_Item_Table.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
          
     }
-    
+    class SpinnerEditor extends AbstractCellEditor implements TableCellEditor {
+    private final JSpinner spinner;
+
+    public SpinnerEditor() {
+        spinner = new JSpinner(new SpinnerNumberModel(1, 0, 100, 1)); // min 0, max 100, step 1
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return spinner.getValue();
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        spinner.setValue(value);
+        return spinner;
+    }
+}
+
+// Spinner Renderer (For Displaying the Spinner)
+class SpinnerRenderer extends JSpinner implements TableCellRenderer {
+    public SpinnerRenderer() {
+        super(new SpinnerNumberModel(1, 0, 100, 1)); // min 0, max 100, step 1
+        setOpaque(true);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        setValue(value);
+        return this;
+    }
+}
     private void But_Shopping_List_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_EditActionPerformed
-        Shopping_List_Edit_Pannel.setVisible(true);
-        Shopping_List_Generate_Pannel.setVisible(false);
-        ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
-        DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingEditTable.getModel();
-        displayClassesTableModel.setRowCount(0);
-        for(ItemEntry i: allItems){
-            Object[] rowData = new Object[4];
-            try {
-                    // Load the image from the URL or file path
-                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
-                    ImageIcon imageIcon = new ImageIcon(imageUrl);
-                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
-                } catch (Exception e) {
-                    rowData[0] = null; // In case the image URL is invalid or there's an error
-                    e.printStackTrace();
-                }
-            
-            rowData[1] = i.getName();
-            rowData[2] = null;
-            rowData[3] = null;
-            displayClassesTableModel.addRow(rowData);
+    Shopping_List_Edit_Pannel.setVisible(true);
+    Shopping_List_Generate_Pannel.setVisible(false);
+    ArrayList<ItemEntry> allItems = ItemQueries.getAllItems();
+    DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingEditTable.getModel();
+    displayClassesTableModel.setRowCount(0);
 
-            
+    for (ItemEntry i : allItems) {
+        Object[] rowData = new Object[4];
+        try {
+            URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+            ImageIcon imageIcon = new ImageIcon(imageUrl);
+            rowData[0] = imageIcon;
+        } catch (Exception e) {
+            rowData[0] = null; // In case the image URL is invalid or there's an error
+            e.printStackTrace();
         }
-        shoppingEditTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
-    }//GEN-LAST:event_But_Shopping_List_EditActionPerformed
+        
+        rowData[1] = i.getName();
+        rowData[2] = null;
+        rowData[3] = 1; // Default value for spinner
 
+        displayClassesTableModel.addRow(rowData);
+    }
+
+    shoppingEditTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+    
+    // Set Spinner as both Editor and Renderer
+    shoppingEditTable.getColumnModel().getColumn(3).setCellEditor(new SpinnerEditor());
+    shoppingEditTable.getColumnModel().getColumn(3).setCellRenderer(new SpinnerRenderer());
+    }//GEN-LAST:event_But_Shopping_List_EditActionPerformed
+    
     private void But_Shopping_List_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_But_Shopping_List_GenerateActionPerformed
         Shopping_List_Edit_Pannel.setVisible(false);
         Shopping_List_Generate_Pannel.setVisible(true);
