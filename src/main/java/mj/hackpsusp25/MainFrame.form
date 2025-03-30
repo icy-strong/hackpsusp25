@@ -11,13 +11,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[800, 500]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[800, 500]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 500]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
@@ -1559,6 +1553,7 @@
                         <Component class="javax.swing.JTextField" name="Shopping_Generated_Search_Box">
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Shopping_Generated_Search_BoxActionPerformed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Shopping_Generated_Search_BoxKeyPressed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="Shopping_Generated_Filter_Lable1">
@@ -1580,6 +1575,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Shopping_GeneratedFilterCmbo1ActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -1619,6 +1617,8 @@
                                   <Component id="Shopping_Edit_Filter_Label" min="-2" pref="57" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Shopping_Edit_FilterCmbo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="shopSaveBtn" min="-2" pref="107" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1636,9 +1636,10 @@
                                       <Component id="Shopping_Edit_Search_Box" alignment="2" min="-2" max="-2" attributes="0"/>
                                       <Component id="Shopping_Edit_Filter_Label" alignment="2" min="-2" max="-2" attributes="0"/>
                                       <Component id="Shopping_Edit_FilterCmbo" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="shopSaveBtn" alignment="2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Shopping_Edit_Table" pref="298" max="32767" attributes="0"/>
+                                  <Component id="Shopping_Edit_Table" pref="294" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1703,6 +1704,7 @@
                         <Component class="javax.swing.JTextField" name="Shopping_Edit_Search_Box">
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Shopping_Edit_Search_BoxActionPerformed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Shopping_Edit_Search_BoxKeyPressed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="Shopping_Edit_Filter_Label">
@@ -1724,9 +1726,26 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Shopping_Edit_FilterCmboActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="shopSaveBtn">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="cc" green="ff" red="cc" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="14" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Save"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shopSaveBtnActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

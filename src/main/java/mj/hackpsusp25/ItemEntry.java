@@ -14,6 +14,7 @@ public class ItemEntry {
     private ArrayList<Integer> categoryIds; // List of category IDs (for multi-category support)
     private int quantity;              // Inventory count
     private String imageUrl;           // Image URL or path
+    private int desiredQnty;
     
     
     
@@ -25,6 +26,18 @@ public class ItemEntry {
         this.imageUrl = imageUrl;
         this.brands = brands;
         this.categoryIds = new ArrayList<>();
+        desiredQnty = 0;
+    }
+    
+    public ItemEntry(String barcode, String name, String brands,
+                     int quantity, String imageUrl, int desiredQnty) {
+        this.barcode = barcode;
+        this.name = name;
+        this.quantity = quantity;
+        this.imageUrl = imageUrl;
+        this.brands = brands;
+        this.categoryIds = new ArrayList<>();
+        this.desiredQnty = desiredQnty;
     }
     
     public ItemEntry(String barcode, String name, String brands) {
@@ -33,6 +46,7 @@ public class ItemEntry {
         this.quantity = quantity = 1;
         this.brands = brands;
         this.categoryIds = new ArrayList<>();
+        desiredQnty = 0;
     }
     
     
@@ -55,6 +69,7 @@ public class ItemEntry {
     public int getQuantity() { return quantity; }
     public String getImageUrl() { return imageUrl; }
     public String getBrands(){ return brands;}
+    public int getDesiredQnty(){ return desiredQnty;}
 
     // Setters
     public void setItemId(int itemId) { this.itemId = itemId; }
@@ -70,7 +85,6 @@ public class ItemEntry {
     }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setBrands(String brands) { this.brands = brands; }
+    public void setDesiredQnty(int desiredQnty){ this.desiredQnty = desiredQnty;}
 
 }
-
-

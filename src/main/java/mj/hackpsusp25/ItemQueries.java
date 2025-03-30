@@ -34,7 +34,7 @@ public class ItemQueries {
         
         try {
             addItem = connection.prepareStatement(
-                "INSERT INTO app.items (barcode, name, brands, quantity, IMGURL) VALUES (?, ?, ?, ?, ?)"
+                "INSERT INTO app.items (barcode, name, brands, quantity, IMGURL, desired_amt) VALUES (?, ?, ?, ?, ?, ?)"
             );
             
             //addItem.setString(1, String.valueOf(id++));
@@ -43,6 +43,7 @@ public class ItemQueries {
             addItem.setString(3, item.getBrands());
             addItem.setInt(4, item.getQuantity());
             addItem.setString(5, item.getImageUrl());
+            addItem.setInt(6, item.getDesiredQnty());
             addItem.executeUpdate();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -63,7 +64,8 @@ public class ItemQueries {
                     resultSet.getString("name"),
                     resultSet.getString("brands"),
                     resultSet.getInt("quantity"),
-                    resultSet.getString("IMGURL")
+                    resultSet.getString("IMGURL"),
+                        resultSet.getInt("desired_amt")
                 );
                 items.add(item);
             }
@@ -87,7 +89,8 @@ public class ItemQueries {
                     resultSet.getString("name"),
                     resultSet.getString("brands"),
                     resultSet.getInt("quantity"),
-                    resultSet.getString("IMGURL")
+                    resultSet.getString("IMGURL"),
+                        resultSet.getInt("desired_amt")
                 );
             }
         } catch (SQLException sqlException) {
@@ -109,7 +112,8 @@ public class ItemQueries {
                     resultSet.getString("name"),
                     resultSet.getString("brands"),
                     resultSet.getInt("quantity"),
-                    resultSet.getString("IMGURL")
+                    resultSet.getString("IMGURL"),
+                        resultSet.getInt("desired_amt")
                 );
             }
         } catch (SQLException sqlException) {
@@ -174,6 +178,21 @@ public class ItemQueries {
         }
     }
     
+    public static void updateDesitedAmt(String barcode, int desiredAmt){
+        connection = DBConnection.getConnection();
+        try {
+            updateItem = connection.prepareStatement(
+                "UPDATE app.items SET desired_amt = ? WHERE barcode = ?"
+            );
+
+            updateItem.setInt(1, desiredAmt);
+            updateItem.setString(2, barcode);
+            updateItem.executeUpdate();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+    
     public static ArrayList<ItemEntry> searchItemsByName(String partialName) {
     connection = DBConnection.getConnection();
     ArrayList<ItemEntry> items = new ArrayList<>();
@@ -192,7 +211,8 @@ public class ItemQueries {
                 resultSet.getString("name"),
                 resultSet.getString("brands"),
                 resultSet.getInt("quantity"),
-                resultSet.getString("IMGURL")
+                resultSet.getString("IMGURL"),
+                    resultSet.getInt("desired_amt")
             ));
         }
     } catch (SQLException sqlException) {
@@ -241,7 +261,9 @@ public class ItemQueries {
             ItemEntry item = new ItemEntry( resultSet.getString("barcode"),
                                  resultSet.getString("name"),
                                  resultSet.getString("brands"), resultSet.getInt("quantity"), 
-                                 resultSet.getString("IMGURL"));
+                                 resultSet.getString("IMGURL"),
+                                resultSet.getInt("desired_amt")
+                                );
             
             if(ItemQueries.getCategoriesForItem(item.getBarcode()).contains(category)){
                 items.add(item);

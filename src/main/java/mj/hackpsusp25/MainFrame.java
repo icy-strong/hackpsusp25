@@ -8,7 +8,10 @@ import java.awt.*;
 import com.formdev.flatlaf.FlatLightLaf; // Import FlatLaf
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.TableCellRenderer;
+import static mj.hackpsusp25.SheetsInterface.getSheetsService;
+import static mj.hackpsusp25.SheetsInterface.writeToSheet;
 
 public class MainFrame extends javax.swing.JFrame {
     private ArrayList<ItemEntry> newItems = new ArrayList<ItemEntry>();
@@ -190,11 +193,10 @@ public class MainFrame extends javax.swing.JFrame {
         Shopping_Edit_Search_Box = new javax.swing.JTextField();
         Shopping_Edit_Filter_Label = new javax.swing.JLabel();
         Shopping_Edit_FilterCmbo = new javax.swing.JComboBox<>();
+        shopSaveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         Main_Pannel.setBackground(new java.awt.Color(237, 235, 234));
@@ -926,11 +928,21 @@ public class MainFrame extends javax.swing.JFrame {
                 Shopping_Generated_Search_BoxActionPerformed(evt);
             }
         });
+        Shopping_Generated_Search_Box.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Shopping_Generated_Search_BoxKeyPressed(evt);
+            }
+        });
 
         Shopping_Generated_Filter_Lable1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Shopping_Generated_Filter_Lable1.setText("Filters: ");
 
         Shopping_GeneratedFilterCmbo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Shopping_GeneratedFilterCmbo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Shopping_GeneratedFilterCmbo1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Shopping_List_Generate_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Generate_Pannel);
         Shopping_List_Generate_Pannel.setLayout(Shopping_List_Generate_PannelLayout);
@@ -1007,11 +1019,30 @@ public class MainFrame extends javax.swing.JFrame {
                 Shopping_Edit_Search_BoxActionPerformed(evt);
             }
         });
+        Shopping_Edit_Search_Box.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Shopping_Edit_Search_BoxKeyPressed(evt);
+            }
+        });
 
         Shopping_Edit_Filter_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Shopping_Edit_Filter_Label.setText("Filters: ");
 
         Shopping_Edit_FilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Shopping_Edit_FilterCmbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Shopping_Edit_FilterCmboActionPerformed(evt);
+            }
+        });
+
+        shopSaveBtn.setBackground(new java.awt.Color(204, 255, 204));
+        shopSaveBtn.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        shopSaveBtn.setText("Save");
+        shopSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shopSaveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Shopping_List_Edit_PannelLayout = new javax.swing.GroupLayout(Shopping_List_Edit_Pannel);
         Shopping_List_Edit_Pannel.setLayout(Shopping_List_Edit_PannelLayout);
@@ -1026,6 +1057,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(Shopping_Edit_Filter_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Shopping_Edit_FilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(shopSaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(Shopping_List_Edit_PannelLayout.createSequentialGroup()
                 .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1039,9 +1072,10 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(Shopping_Edit_Search_Label)
                     .addComponent(Shopping_Edit_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Shopping_Edit_Filter_Label)
-                    .addComponent(Shopping_Edit_FilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Shopping_Edit_FilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shopSaveBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                .addComponent(Shopping_Edit_Table, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
         );
 
         Shopping_List_Card_Pannel.add(Shopping_List_Edit_Pannel, "card2");
@@ -1287,6 +1321,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
         Shopping_List_Edit_Pannel.setVisible(false);
         Shopping_Select_Pannel.setVisible(false);
         Shopping_List_Generate_Pannel.setVisible(true);
+        popShopGenTable();
     }//GEN-LAST:event_But_Shopping_List_GenerateActionPerformed
 
     private void Shopping_Edit_Search_BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Edit_Search_BoxActionPerformed
@@ -1510,6 +1545,160 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
         // TODO add your handling code here:
     }//GEN-LAST:event_Shopping_Generated_Search_BoxActionPerformed
 
+    private void shopSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopSaveBtnActionPerformed
+        DefaultTableModel model = (DefaultTableModel) shoppingEditTable.getModel();
+
+        for (int row = 0; row < model.getRowCount(); row++) {
+            Integer value = (Integer)model.getValueAt(row, 3); 
+            System.out.println(value);
+            if (value < 0){value = 0;}
+            ItemEntry itm = ItemQueries.getItemByName((String)model.getValueAt(row, 1));
+            ItemQueries.updateDesitedAmt(itm.getBarcode(), value);
+        }
+    }//GEN-LAST:event_shopSaveBtnActionPerformed
+
+    private void Shopping_Edit_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Shopping_Edit_Search_BoxKeyPressed
+        DefaultTableModel model = (DefaultTableModel) shoppingEditTable.getModel();
+
+        for (int row = 0; row < model.getRowCount(); row++) {
+            Integer value = (Integer)model.getValueAt(row, 3); 
+            System.out.println(value);
+            if (value < 0){value = 0;}
+            ItemEntry itm = ItemQueries.getItemByName((String)model.getValueAt(row, 1));
+            ItemQueries.updateDesitedAmt(itm.getBarcode(), value);
+        }
+    }//GEN-LAST:event_Shopping_Edit_Search_BoxKeyPressed
+
+    private void Shopping_Edit_FilterCmboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_Edit_FilterCmboActionPerformed
+        popShopEditTable();
+    }//GEN-LAST:event_Shopping_Edit_FilterCmboActionPerformed
+
+    private void Shopping_Generated_Search_BoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Shopping_Generated_Search_BoxKeyPressed
+       popShopGenTable();
+    }//GEN-LAST:event_Shopping_Generated_Search_BoxKeyPressed
+
+    private void Shopping_GeneratedFilterCmbo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Shopping_GeneratedFilterCmbo1ActionPerformed
+        popShopGenTable();
+    }//GEN-LAST:event_Shopping_GeneratedFilterCmbo1ActionPerformed
+
+    private void popShopEditTable(){
+    DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingEditTable.getModel();
+    displayClassesTableModel.setRowCount(0);
+    
+    String search = Shopping_Edit_Search_Box.getText();
+    String b = (String) Shopping_Edit_FilterCmbo.getSelectedItem();
+    ArrayList<ItemEntry> results;
+    if(b.equals("None")){
+         results = ItemQueries.searchItemsByName(search);
+    }else{
+        results = ItemQueries.searchItems(search, b);
+    }
+    
+    
+    for (ItemEntry i : results) {
+        Object[] rowData = new Object[4];
+        try {
+            URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+            ImageIcon imageIcon = new ImageIcon(imageUrl);
+            rowData[0] = imageIcon;
+        } catch (Exception e) {
+            rowData[0] = null; // In case the image URL is invalid or there's an error
+            e.printStackTrace();
+        }
+        
+        rowData[1] = i.getName();
+        ArrayList<String> cats = ItemQueries.getCategoriesForItem(i.getBarcode());
+
+            String str = "";
+                for(String s: cats){
+                    str+=s+" ";
+                }
+                rowData[2] = str;
+        rowData[3] = i.getDesiredQnty(); // Default value for spinner
+
+        displayClassesTableModel.addRow(rowData);
+    }
+
+    shoppingEditTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+    
+    // Set Spinner as both Editor and Renderer
+    shoppingEditTable.getColumnModel().getColumn(3).setCellEditor(new SpinnerEditor());
+    shoppingEditTable.getColumnModel().getColumn(3).setCellRenderer(new SpinnerRenderer());
+    
+    }
+    private void popShopGenTable(){
+        String search = Shopping_Generated_Search_Box.getText();
+        String b = (String) Shopping_GeneratedFilterCmbo1.getSelectedItem();
+        ArrayList<ItemEntry> results2;
+        if(b.equals("None")){
+            results2 = ItemQueries.searchItemsByName(search);
+        }else{
+            results2 = ItemQueries.searchItems(search, b);
+        }
+        ArrayList<ItemEntry> results = new ArrayList<ItemEntry>();
+        
+        for(ItemEntry i: results2){
+            if(i.getQuantity()<i.getDesiredQnty()){
+                results.add(i);
+            }
+        }
+        
+        List<List<Object>> toWrite = new ArrayList<>();
+        
+        DefaultTableModel displayClassesTableModel = (DefaultTableModel) shoppingGenTable.getModel();
+        displayClassesTableModel.setRowCount(0);
+        for(ItemEntry i: results){
+            List<Object> line = new ArrayList<>();
+            Object[] rowData = new Object[4];
+            try {
+                    // Load the image from the URL or file path
+                    URL imageUrl = new URL(i.getImageUrl()); // Assuming getImageUrl() returns a valid URL
+                    ImageIcon imageIcon = new ImageIcon(imageUrl);
+                    rowData[0] = imageIcon;  // Set the ImageIcon in rowData[0]
+                } catch (Exception e) {
+                    rowData[0] = null; // In case the image URL is invalid or there's an error
+                    e.printStackTrace();
+                }
+            
+            rowData[1] = i.getName();
+            line.add(i.getName());
+            rowData[3] = i.getDesiredQnty()-i.getQuantity();
+            line.add(i.getBrands());
+            line.add(String.valueOf(i.getDesiredQnty()-i.getQuantity()));
+            
+            ArrayList<String> cats = ItemQueries.getCategoriesForItem(i.getBarcode());
+            
+            String str = "";
+                for(String s: cats){
+                    str+=s+" ";
+                }
+                rowData[2] = str;
+                
+            displayClassesTableModel.addRow(rowData);
+            toWrite.add(line);
+            int rowCount = results.size();
+            
+            
+        }
+        try{
+            int colCount = 4; // Assuming 4 columns (adjust if needed)
+            List<List<Object>> blankRows = new ArrayList<>();
+
+            // Adding blank rows to clear out excess data
+            for (int f = displayClassesTableModel.getRowCount(); f < displayClassesTableModel.getRowCount() + 20; f++) { // Clear at least 20 extra rows
+                List<Object> blankRow = new ArrayList<>();
+                for (int j = 0; j < colCount; j++) {
+                    blankRow.add(""); // Empty cell
+                }
+                blankRows.add(blankRow);
+            }
+
+            toWrite.addAll(blankRows);
+        writeToSheet(getSheetsService(), "1be1eaIzrXCHs7HBkhr41Gq1yv5I7v-mJ8lXLVPIaL08", "Shopping List!A2", toWrite);
+        }catch(Exception e){}
+        shoppingGenTable.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+    }
+    
     private void popInvTable(){
         String search = Inv_Search_Box.getText();
         String b = (String) invFilterCmbo.getSelectedItem();
@@ -1676,6 +1865,7 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     private javax.swing.JComboBox<String> orgFilterAddFilterCmbo;
     private javax.swing.JComboBox<String> orgFilterDeleteFilterCmbo;
     private javax.swing.JComboBox<String> orgFilterFilterCmbo;
+    private javax.swing.JButton shopSaveBtn;
     private javax.swing.JTable shoppingEditTable;
     private javax.swing.JTable shoppingGenTable;
     private javax.swing.JTextField subBarcodeBox;
