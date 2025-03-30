@@ -152,7 +152,6 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Filter_Search_Box = new javax.swing.JTextField();
         Org_Filter_Label2 = new javax.swing.JLabel();
         orgFilterFilterCmbo = new javax.swing.JComboBox<>();
-        Org_Filter_Label3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Org_Filter_Filters_Table = new javax.swing.JTable();
         Org_Filter_Label4 = new javax.swing.JLabel();
@@ -212,7 +211,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 34)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(30, 41, 49));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("AT HOME INVENTORY MANAGMENT SYSTEM");
+        jLabel2.setText("HOME INVENTORY MANAGMENT SYSTEM");
         Main_Pannel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         buttonGroup1.add(But_Shopping_List);
@@ -358,8 +357,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(Inv_Search_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Inv_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addComponent(Inv_Filter_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(Inv_Filter_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(invFilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -603,17 +602,17 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Org_Filter_Item_Table);
 
-        Org_Filter_Pannel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 380, 211));
+        Org_Filter_Pannel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 61, 380, 230));
 
         Org_Filter_Label1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Org_Filter_Label1.setText("1 - Select an item");
         Org_Filter_Label1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Org_Filter_Pannel.add(Org_Filter_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 452, -1));
+        Org_Filter_Pannel.add(Org_Filter_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 20));
 
         Org_Filter_Search_Label.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Search_Label.setText("Search: ");
-        Org_Filter_Pannel.add(Org_Filter_Search_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
+        Org_Filter_Pannel.add(Org_Filter_Search_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         Org_Filter_Search_Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -625,11 +624,11 @@ public class MainFrame extends javax.swing.JFrame {
                 Org_Filter_Search_BoxKeyPressed(evt);
             }
         });
-        Org_Filter_Pannel.add(Org_Filter_Search_Box, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 160, -1));
+        Org_Filter_Pannel.add(Org_Filter_Search_Box, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 160, -1));
 
         Org_Filter_Label2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label2.setText("Filters: ");
-        Org_Filter_Pannel.add(Org_Filter_Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+        Org_Filter_Pannel.add(Org_Filter_Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 30, 60, -1));
 
         orgFilterFilterCmbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orgFilterFilterCmbo.addActionListener(new java.awt.event.ActionListener() {
@@ -637,13 +636,7 @@ public class MainFrame extends javax.swing.JFrame {
                 orgFilterFilterCmboActionPerformed(evt);
             }
         });
-        Org_Filter_Pannel.add(orgFilterFilterCmbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
-
-        Org_Filter_Label3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        Org_Filter_Label3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Org_Filter_Label3.setText("Edit Item Filters");
-        Org_Filter_Label3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Org_Filter_Pannel.add(Org_Filter_Label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
+        Org_Filter_Pannel.add(orgFilterFilterCmbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
         Org_Filter_Filters_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -679,7 +672,7 @@ public class MainFrame extends javax.swing.JFrame {
         Org_Filter_Label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Org_Filter_Label4.setText("2. Add/Delete Filters From Item");
         Org_Filter_Label4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Org_Filter_Pannel.add(Org_Filter_Label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 339, -1));
+        Org_Filter_Pannel.add(Org_Filter_Label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 0, 410, -1));
 
         Org_Filter_Label5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Org_Filter_Label5.setText("Select Filter To Add:");
@@ -748,7 +741,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_Org_Customize_ToggleActionPerformed(evt);
             }
         });
-        Org_Pannel.add(But_Org_Customize_Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 130, 20));
+        Org_Pannel.add(But_Org_Customize_Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 160, 20));
 
         buttonGroup3.add(But_Org_Filter_Toggle);
         But_Org_Filter_Toggle.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -758,7 +751,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_Org_Filter_ToggleActionPerformed(evt);
             }
         });
-        Org_Pannel.add(But_Org_Filter_Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 20));
+        Org_Pannel.add(But_Org_Filter_Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 170, 20));
 
         buttonGroup3.add(But_Org_Unpack_Toggle);
         But_Org_Unpack_Toggle.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -768,7 +761,7 @@ public class MainFrame extends javax.swing.JFrame {
                 But_Org_Unpack_ToggleActionPerformed(evt);
             }
         });
-        Org_Pannel.add(But_Org_Unpack_Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 130, 20));
+        Org_Pannel.add(But_Org_Unpack_Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 170, 20));
 
         Base_Pannel.add(Org_Pannel, "card5");
 
@@ -955,8 +948,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(Shopping_Generated_Search_Lable, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Shopping_Generated_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addComponent(Shopping_Generated_Filter_Lable1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(Shopping_Generated_Filter_Lable1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Shopping_GeneratedFilterCmbo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(292, Short.MAX_VALUE))
@@ -1055,8 +1048,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(Shopping_Edit_Search_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Shopping_Edit_Search_Box, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addComponent(Shopping_Edit_Filter_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(Shopping_Edit_Filter_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Shopping_Edit_FilterCmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
@@ -1778,7 +1771,6 @@ class SpinnerRenderer extends JSpinner implements TableCellRenderer {
     private javax.swing.JTable Org_Filter_Item_Table;
     private javax.swing.JLabel Org_Filter_Label1;
     private javax.swing.JLabel Org_Filter_Label2;
-    private javax.swing.JLabel Org_Filter_Label3;
     private javax.swing.JLabel Org_Filter_Label4;
     private javax.swing.JLabel Org_Filter_Label5;
     private javax.swing.JLabel Org_Filter_Label6;
